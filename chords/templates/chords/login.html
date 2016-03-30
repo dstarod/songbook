@@ -3,10 +3,10 @@
 {% block content %}
     <form action="{% url 'songs:login' %}" method="post">
         {% csrf_token%}
-        <label for="username">Login</label>
-        <input type="text" name="username" id="username">
-        <label for="password">Login</label>
-        <input type="password" name="password" id="password">
-        <input type="submit">
+        {{ login_form }}
+        <div class="center">
+            <input type="submit" value="Submit" class="btn"/>
+            <br><br>
+        </div>
     </form>
 {% endblock %}

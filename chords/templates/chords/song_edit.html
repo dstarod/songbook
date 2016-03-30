@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<form action="/your-name/" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Submit" />
-</form>
-</body>
-</html>
+{% extends 'chords/base.html' %}
+
+{% block content %}
+    <form action="{% url 'songs:edit' pk=song_id %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <div class="center">
+            <input type="submit" value="Submit" class="btn"/>
+            <br><br>
+        </div>
+    </form>
+{% endblock %}
