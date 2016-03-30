@@ -6,6 +6,13 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.views import generic
 
+from django import forms
+
+
+class NameForm(forms.Form):
+    your_name = forms.CharField(label='Your name', max_length=100)
+
+
 
 class SongsList(generic.ListView):
     # template_name = 'chords/index.html'
@@ -32,6 +39,11 @@ class TagList(generic.ListView):
 class TagDetail(generic.DetailView):
     model = Tag
     # template_name = 'chords/song.html'
+
+
+def song_edit(request, pk):
+    f = NameForm()
+    return render(request, 'chords/song_edit.html', context={'form': f})
 
 
 def login_view(request):

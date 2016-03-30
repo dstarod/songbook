@@ -12,6 +12,8 @@ urlpatterns = [
 
     url(r'login', views.login_view, name='login'),
     url(r'logout/$', views.logout_view, name='logout'),
+
+    url(r'^edit/(?P<pk>[0-9]+)', views.song_edit, name='edit')
 ]
 
 # from django.contrib.auth.decorators import permission_required

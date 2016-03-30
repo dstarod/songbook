@@ -4,7 +4,7 @@ from . import models
 
 class SongAdmin(admin.ModelAdmin):
     fieldsets = (
-        ('Title', {'fields': ['title', 'body']}),
+        ('Title', {'fields': ['title', 'body', 'user']}),
     )
     list_display = ('title', 'created_at')
     list_filter = ('title',)

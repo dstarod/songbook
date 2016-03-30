@@ -15,11 +15,12 @@
 .song_body{
     white-space: pre-wrap;
     font-family: monospace;
+    font-size: 24pt;
 }
 
 /* Admin customize */
 #song_form #id_body{
     white-space: pre-wrap;
     font-family: monospace;
-    font-size: 16pt;
+    font-size: 24pt;
 }
