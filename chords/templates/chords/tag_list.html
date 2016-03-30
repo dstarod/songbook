@@ -1,0 +1,7 @@
+{% extends 'chords/base.html' %}
+
+{% block content %}
+    {% for tag in tags %}
+        <a href="{% url 'songs:tag' pk=tag.id %}">{{ tag.title }}</a>
+    {% endfor %}
+{% endblock %}

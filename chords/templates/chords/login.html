@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<form action="{% url 'songs:login' %}" method="post">
-    {% csrf_token%}
-    <input type="text" name="username">
-    <input type="text" name="password">
-    <input type="submit">
-</form>
-</body>
-</html>
+{% extends 'chords/base.html' %}
+
+{% block content %}
+    <form action="{% url 'songs:login' %}" method="post">
+        {% csrf_token%}
+        <label for="username">Login</label>
+        <input type="text" name="username" id="username">
+        <label for="password">Login</label>
+        <input type="password" name="password" id="password">
+        <input type="submit">
+    </form>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'chords/base.html' %}
+
+{% block content %}
+    <h3>{{ song.title }}</h3>
+    <p class="song_body">{{ song.body }}</p>
+
+    {% for tag in song.tags.all %}
+        <a href="{% url 'songs:tag' pk=tag.id %}">{{ tag }}</a>
+    {% endfor %}
+{% endblock %}

@@ -12,3 +12,14 @@
 .icon-block .material-icons {
 	font-size: inherit;
 }
+.song_body{
+    white-space: pre-wrap;
+    font-family: monospace;
+}
+
+/* Admin customize */
+#song_form #id_body{
+    white-space: pre-wrap;
+    font-family: monospace;
+    font-size: 16pt;
+}
