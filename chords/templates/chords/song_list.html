@@ -1,9 +1,9 @@
 {% extends 'chords/base.html' %}
 
 {% block content %}
-    <ul>
+<div class="row">
     {% for song in songs %}
-        <li><a href="{% url 'songs:song' pk=song.id %}">{{ song }}</a></li>
+        <a class='col l4 m6 s1' href="{% url 'songs:song' pk=song.id %}">{{ song }}</a>
     {% endfor %}
-    </ul>
+</div>
 {% endblock %}

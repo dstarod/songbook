@@ -18,6 +18,10 @@
     font-size: 24pt;
 }
 
+.song_body_edit{
+    font-size: 14pt;
+}
+
 /* Admin customize */
 #song_form #id_body{
     white-space: pre-wrap;

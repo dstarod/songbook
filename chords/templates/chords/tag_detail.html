@@ -3,7 +3,9 @@
 {% block content %}
     <h3>{{ tag.title }}</h3>
 
-    {% for song in tag.songs.all %}
-        <a href="{% url 'songs:song' pk=song.id %}">{{ song.title }}</a>
-    {% endfor %}
+    <div class="row">
+        {% for song in tag.songs.all %}
+            <a class="col l4 m6 s1" href="{% url 'songs:song' pk=song.id %}">{{ song.title }}</a>
+        {% endfor %}
+    </div>
 {% endblock %}

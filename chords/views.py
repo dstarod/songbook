@@ -73,11 +73,13 @@ def song_edit(request, pk):
         'body': song.body,
         'tags': ', '.join([t.title.upper() for t in song.tags.all()]) if song.title else ''
     })
-    return render(request, 'chords/song_edit.html', context={'form': f, 'song_id': pk})
+
+    tags = Tag.objects.filter(user=request.user).all()
+    return render(request, 'chords/song_edit.html', context={'form': f, 'song': song, 'tags': tags})
 
 
 def login_view(request):
-    login_form = LoginForm()
+    form = LoginForm()
 
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -87,11 +89,14 @@ def login_view(request):
                 username=form.cleaned_data['username'],
                 password=form.cleaned_data['password']
             )
+
         if user is not None and user.is_active:
             login(request, user)
-        return redirect('songs:index')
+            return redirect('songs:index')
 
-    return render(request, template_name='chords/login.html', context={'login_form': login_form})
+        # form.add_error('password', 'Nothing')
+
+    return render(request, template_name='chords/login.html', context={'login_form': form})
 
 
 def logout_view(request):
