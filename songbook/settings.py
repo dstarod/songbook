@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+from .private import *
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,7 +22,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'oe0lxc$rxjr_q50(41xp)9o(s)!cotuhr8e7cf5qpuj@0k@i5k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
@@ -29,7 +30,7 @@ DEBUG = True
 # ALLOWED_HOSTS = ['localhost']
 # STATIC_ROOT = '/Users/dmitrystarodubtsev/Projects/songbook'
 
-LOGIN_URL = '/songs/login'
+# LOGIN_URL = '/songs/login'
 
 # Application definition
 
@@ -90,7 +91,6 @@ DATABASES = {
 #  NAME, USER, PASSWORD, HOST
 
 
-
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
 
@@ -128,3 +128,16 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# https://django-registration.readthedocs.org/en/2.0.4/quickstart.html#quickstart
+ACCOUNT_ACTIVATION_DAYS = 1
+REGISTRATION_OPEN = True
+
+# EMAIL_USE_TLS = True
+EMAIL_USE_SSL = True
+EMAIL_TIMEOUT = 20
+# EMAIL_SSL_KEYFILE =
+# EMAIL_SSL_CERTFILE =
+
+# Private fields
+# SECRET_KEY, REGISTRATION_SALT, EMAIL_HOST, EMAIL_PORT, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD, DEFAULT_FROM_EMAIL

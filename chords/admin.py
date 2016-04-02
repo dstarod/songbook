@@ -22,7 +22,7 @@ class SongAdmin(admin.ModelAdmin):
 class TagAdmin(admin.ModelAdmin):
     list_display = ('title', 'user')
 
-admin.site.register(models.Song, SongAdmin)
-# admin.site.register(models.Song)
+# admin.site.register(models.Song, SongAdmin)
+admin.site.register(models.Song)
 # admin.site.register(models.Tag, TagAdmin)
 admin.site.register(models.Tag)

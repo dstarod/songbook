@@ -1,0 +1,11 @@
+{% extends 'chords/base.html' %}
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token%}
+        {{ form }}
+        <div class="input-field center" >
+            <input type="submit" class="btn">
+        </div>
+        <br>
+    </form>
+{% endblock %}

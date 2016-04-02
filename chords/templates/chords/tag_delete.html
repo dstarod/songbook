@@ -1,0 +1,14 @@
+{% extends 'chords/tag.html' %}
+
+{% block content %}
+    <h5 class="center">Delete tag "{{ tag.title }}"</h5>
+    <form method="post">
+       {% csrf_token %}
+        <div class="input-field center-align">
+            <button class="btn waves-effect waves-light" type="submit" name="action">
+                <i class="material-icons small left">done</i>I am sure
+            </button>
+            <br><br>
+        </div>
+    </form>
+{% endblock %}

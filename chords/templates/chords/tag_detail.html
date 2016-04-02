@@ -1,11 +1,16 @@
-{% extends 'chords/base.html' %}
+{% extends 'chords/tag.html' %}
 
 {% block content %}
-    <h3>{{ tag.title }}</h3>
+    <h1 class="header center orange-text light">Tag: "{{ tag.title }}"</h1>
 
-    <div class="row">
+    <div class="row center">
+        <a href="{% url 'songs:tag_edit' pk=tag.id %}" class="btn"><i class="material-icons left">input</i>Edit</a>
+        <a href="{% url 'songs:tag_delete' pk=tag.id %}" class="btn"><i class="material-icons left">delete</i>Delete</a>
+    </div>
+
+    <div class="collection">
         {% for song in tag.songs.all %}
-            <a class="col l4 m6 s1" href="{% url 'songs:song' pk=song.id %}">{{ song.title }}</a>
+            <a class="collection-item" href="{% url 'songs:song' pk=song.id %}">{{ song.title }}</a>
         {% endfor %}
     </div>
 {% endblock %}

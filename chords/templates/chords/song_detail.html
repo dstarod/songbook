@@ -1,10 +1,22 @@
-{% extends 'chords/base.html' %}
+{% extends 'chords/song.html' %}
 
 {% block content %}
-    <a href="{% url 'songs:edit' pk=song.id %}">Edit</a>
     <h1 class="header center orange-text light">{{ song.title }}</h1>
+
+    {% if song.user == user %}
+        <div class="row center">
+            <a href="{% url 'songs:edit' pk=song.id %}" class="btn"><i class="material-icons left">input</i>Edit</a>
+            <a href="{% url 'songs:delete' pk=song.id %}" class="btn"><i class="material-icons left">delete</i>Delete</a>
+        </div>
+    {% endif %}
+
     <p class="song_body">{{ song.body }}</p>
-    {% for tag in song.tags.all %}
-        <a href="{% url 'songs:tag' pk=tag.id %}">{{ tag }}</a>
-    {% endfor %}
+
+    {% if song.user == user %}
+        <div class="row">
+            {% for tag in song.tags.all %}
+                <div class="chip teal"><a class="white-text" href="{% url 'songs:tag' pk=tag.id %}">{{ tag }}</a></div>
+            {% endfor %}
+        </div>
+    {% endif %}
 {% endblock %}

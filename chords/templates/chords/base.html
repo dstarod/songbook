@@ -7,7 +7,7 @@
     <!-- CSS  -->
     {% load staticfiles %}
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="{% static 'chords/css/materialize2.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="{% static 'chords/css/materialize.min.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="{% static 'chords/css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
@@ -17,13 +17,13 @@
             <a id="logo-container" href="{% url 'songs:index' %}" class="brand-logo">Songbook</a>
 
             <ul class="right hide-on-med-and-down">
-                <li><a href="{% url 'songs:index' %}">Songs</a></li>
-                <li><a href="{% url 'songs:tags' %}">Tags</a></li>
+                <li class="{% block songs_nav %}{% endblock %}"><a href="{% url 'songs:index' %}">Songs</a></li>
                 {% if user.is_authenticated %}
-                    <li><a href="{% url 'songs:edit' pk=0 %}">Create</a></li>
-                    <li><a href="{% url 'songs:logout' %}">Logout</a></li>
+                    <li class="{% block tags_nav %}{% endblock %}"><a href="{% url 'songs:tags' %}">Tags</a></li>
+                    <li><a href="/accounts/logout/">{{ user }} / Logout</a></li>
                 {% else %}
-                    <li><a href="{% url 'songs:login' %}">Login</a></li>
+                    <li><a href="/accounts/login/">Login</a></li>
+                    <li><a href="/accounts/register/">Register</a></li>
                 {% endif %}
             </ul>
 
@@ -53,8 +53,12 @@
 
     <!--  Scripts-->
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="{% static 'chords/js/materialize.js' %}"></script>
+    <script src="{% static 'chords/js/materialize.min.js' %}"></script>
     <script src="{% static 'chords/js/init.js' %}"></script>
-
+    <script>
+        $(document).ready(function() {
+            $('select').material_select();
+        });
+    </script>
 </body>
 </html>

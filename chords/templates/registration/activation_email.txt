@@ -1,0 +1,2 @@
+Expiration days: {{ expiration_days }}
+http://{{ site }}/accounts/activate/{{ activation_key }}

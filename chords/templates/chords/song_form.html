@@ -1,0 +1,28 @@
+{% extends 'chords/song.html' %}
+
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+
+        <div class="row">
+            <div class="input-field col l6 m6 s12">
+                {{ form.title }}{{ form.title.label_tag }}
+            </div>
+            <div class="input-field col l6 m6 s12">
+                {{ form.tags }}{{ form.tags.label_tag }}
+            </div>
+        </div>
+
+        <div class="input-field col l12 m12 s12">
+            {{ form.body }}{{ form.body.label_tag }}
+        </div>
+        <div class="row">
+            <div class="input-field col l6 m6 s12">
+                {{ form.public }}{{ form.public.label_tag }}
+            </div>
+            <div class="input-field col l6 m6 s12 center">
+                <input type="submit" value="Submit" class="btn"/>
+            </div>
+        </div>
+    </form>
+{% endblock %}

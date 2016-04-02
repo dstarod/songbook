@@ -3,23 +3,68 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.views import generic
-
+from django.core.urlresolvers import reverse_lazy
 from .models import Song, Tag
-from .forms import LoginForm, SongForm
+from .forms import LoginForm, SongModelForm
+from django.db.models import Q
 
 
 class SongsList(generic.ListView):
-    # template_name = 'chords/index.html'
     context_object_name = 'songs'
 
     def get_queryset(self):
-        # return Song.objects.all()
-        return Song.objects.filter(user=self.request.user)
+        # Only users songs or public
+        return Song.objects.filter(Q(user_id=self.request.user.id) | Q(public=True))
 
 
 class SongDetail(generic.DetailView):
     model = Song
-    # template_name = 'chords/song.html'
+
+    def get_queryset(self):
+        # Only users songs or public
+        return Song.objects.filter(Q(user_id=self.request.user.id) | Q(public=True))
+
+
+class SongEdit(generic.UpdateView):
+    model = Song
+    form_class = SongModelForm
+    success_url = reverse_lazy('songs:index')
+
+    def get_initial(self, *args, **kwargs):
+        # Get only user tags
+        super(SongEdit, self).get_initial()
+        self.initial = {'user': self.request.user}
+        return self.initial
+
+    def get_queryset(self):
+        # Only users songs or public
+        return Song.objects.filter(user_id=self.request.user.id)
+
+
+class SongCreate(generic.CreateView):
+    model = Song
+    form_class = SongModelForm
+    success_url = reverse_lazy('songs:index')
+
+    def get_initial(self, *args, **kwargs):
+        # Get only user tags
+        super(SongCreate, self).get_initial()
+        self.initial = {'user': self.request.user}
+        return self.initial
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(SongCreate, self).form_valid(form)
+
+
+class SongDelete(generic.DeleteView):
+    model = Song
+    template_name = 'chords/song_delete.html'
+    success_url = reverse_lazy('songs:index')
+
+    def get_queryset(self):
+        # Only users songs or public
+        return Song.objects.filter(user_id=self.request.user.id)
 
 
 class TagList(generic.ListView):
@@ -32,73 +77,37 @@ class TagList(generic.ListView):
 
 class TagDetail(generic.DetailView):
     model = Tag
-    # template_name = 'chords/song.html'
+
+    def get_queryset(self):
+        # Only users songs or public
+        return Tag.objects.filter(user_id=self.request.user.id)
 
 
-def song_edit(request, pk):
-    if int(pk) > 0:
-        song = Song.objects.get(pk=pk)
-    else:
-        song = Song()
+class TagCreate(generic.CreateView):
+    model = Tag
+    fields = ['title']
+    success_url = reverse_lazy('songs:tags')
 
-    if request.method == 'POST':
-        form = SongForm(request.POST)
-        if form.is_valid():
-            song.title = form.cleaned_data['title']
-            song.body = form.cleaned_data['body']
-            song.user = request.user
-            song.save()
-
-            tags = []
-
-            form_tags = set([t.strip() for t in form.cleaned_data['tags'].upper().split(',')])
-            existed_tags = Tag.objects.filter(title__in=form_tags, user=request.user).all()
-            for tag in existed_tags:
-                form_tags.discard(tag.title)
-                tags.append(tag)
-
-            for t in form_tags:
-                if not len(t):
-                    continue
-                tag = Tag.objects.create(title=t, user=request.user)
-                tags.append(tag)
-
-            song.tags = tags
-            song.save()
-
-            return redirect('songs:edit', pk=song.id)
-
-    f = SongForm(initial={
-        'title': song.title,
-        'body': song.body,
-        'tags': ', '.join([t.title.upper() for t in song.tags.all()]) if song.title else ''
-    })
-
-    tags = Tag.objects.filter(user=request.user).all()
-    return render(request, 'chords/song_edit.html', context={'form': f, 'song': song, 'tags': tags})
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(TagCreate, self).form_valid(form)
 
 
-def login_view(request):
-    form = LoginForm()
+class TagDelete(generic.DeleteView):
+    model = Tag
+    template_name = 'chords/tag_delete.html'
+    success_url = reverse_lazy('songs:tags')
 
-    if request.method == 'POST':
-        form = LoginForm(request.POST)
-        user = None
-        if form.is_valid():
-            user = authenticate(
-                username=form.cleaned_data['username'],
-                password=form.cleaned_data['password']
-            )
-
-        if user is not None and user.is_active:
-            login(request, user)
-            return redirect('songs:index')
-
-        # form.add_error('password', 'Nothing')
-
-    return render(request, template_name='chords/login.html', context={'login_form': form})
+    def get_queryset(self):
+        # Only users songs or public
+        return Tag.objects.filter(user_id=self.request.user.id)
 
 
-def logout_view(request):
-    logout(request)
-    return redirect('songs:index')
+class TagEdit(generic.UpdateView):
+    model = Tag
+    fields = ['title']
+    success_url = reverse_lazy('songs:tags')
+
+
+def profile(request):
+    return render(request, template_name='chords/song.html', context={})

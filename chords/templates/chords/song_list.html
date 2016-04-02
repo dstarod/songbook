@@ -1,9 +1,18 @@
-{% extends 'chords/base.html' %}
+{% extends 'chords/song.html' %}
 
 {% block content %}
-<div class="row">
-    {% for song in songs %}
-        <a class='col l4 m6 s1' href="{% url 'songs:song' pk=song.id %}">{{ song }}</a>
-    {% endfor %}
-</div>
+    <h1 class="header center orange-text light">Song list</h1>
+
+    <div class="collection">
+        {% for song in songs %}
+            <a class='collection-item' href="{% url 'songs:song' pk=song.id %}">{{ song }}</a>
+        {% endfor %}
+    </div>
+
+    {% if user.is_authenticated %}
+        <div class="row center">
+            <a class="btn"  href="{% url 'songs:create' %}">Create new one</a>
+        </div>
+    {% endif %}
+
 {% endblock %}
