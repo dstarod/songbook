@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="{% static 'chords/css/materialize.min.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="{% static 'chords/css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+
 </head>
 <body>
 
@@ -20,10 +21,14 @@
                 <li class="{% block songs_nav %}{% endblock %}"><a href="{% url 'songs:index' %}">Songs</a></li>
                 {% if user.is_authenticated %}
                     <li class="{% block tags_nav %}{% endblock %}"><a href="{% url 'songs:tags' %}">Tags</a></li>
-                    <li><a href="/accounts/logout/">{{ user }} / Logout</a></li>
+                    <li><a href="/accounts/profile/">{{ user }}</a></li>
+                    <li><a href="/accounts/logout/">Logout</a></li>
                 {% else %}
                     <li><a href="/accounts/login/">Login</a></li>
                     <li><a href="/accounts/register/">Register</a></li>
+                {% endif %}
+                {% if user.is_superuser %}
+                    <li><a href="/admin/">Admin</a></li>
                 {% endif %}
             </ul>
 
@@ -38,7 +43,7 @@
 
     <div class="section">
         <div class="row">
-            <div class="card-panel col l8 offset-l2">
+            <div class="col l8 offset-l2">
                 {% block content %}{% endblock %}
             </div>
         </div>
@@ -53,11 +58,18 @@
 
     <!--  Scripts-->
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="{% static 'chords/js/jquery.textfill.min.js' %}"></script>
     <script src="{% static 'chords/js/materialize.min.js' %}"></script>
     <script src="{% static 'chords/js/init.js' %}"></script>
     <script>
+        // https://github.com/jquery-textfill/jquery-textfill
         $(document).ready(function() {
             $('select').material_select();
+            $('.song_body').textfill({
+                widthOnly: true,
+                maxFontPixels: 60,
+                innerTag: 'span'
+            });
         });
     </script>
 </body>

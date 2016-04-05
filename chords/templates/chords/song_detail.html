@@ -1,7 +1,7 @@
 {% extends 'chords/song.html' %}
 
 {% block content %}
-    <h1 class="header center orange-text light">{{ song.title }}</h1>
+    <h4 class="header center orange-text">{{ song.title }}</h4>
 
     {% if song.user == user %}
         <div class="row center">
@@ -10,7 +10,11 @@
         </div>
     {% endif %}
 
-    <p class="song_body">{{ song.body }}</p>
+    {% autoescape off %}
+    <p class="song_body"><span>
+        {{ song.body_nbsp|linebreaksbr }}
+    </span></p>
+    {% endautoescape %}
 
     {% if song.user == user %}
         <div class="row">

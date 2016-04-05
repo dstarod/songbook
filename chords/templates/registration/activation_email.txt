@@ -1,2 +1,3 @@
-Expiration days: {{ expiration_days }}
+For activate your account please visit
 http://{{ site }}/accounts/activate/{{ activation_key }}
+during {{ expiration_days }} day(s).

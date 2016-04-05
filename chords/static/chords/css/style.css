@@ -12,9 +12,14 @@
 .icon-block .material-icons {
 	font-size: inherit;
 }
-.song_body{
+.song_body span{
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+    font-size: 24pt;
+}
+
+.song_body_edit{
     white-space: pre-wrap;
-    font-family: monospace;
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
     font-size: 24pt;
 }
 

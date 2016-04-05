@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    Activation complete
-</body>
-</html>
+{% extends 'chords/base.html' %}
+
+{% block content %}
+    Activation complete! Now you can <a href="/accounts/login/">login</a>.
+{% endblock %}

@@ -110,4 +110,5 @@ class TagEdit(generic.UpdateView):
 
 
 def profile(request):
-    return render(request, template_name='chords/song.html', context={})
+
+    return render(request, template_name='registration/profile.html', context={})

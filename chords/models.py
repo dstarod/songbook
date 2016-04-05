@@ -1,5 +1,7 @@
+from PIL import Image
 from django.db import models
 from django.conf import settings
+from django_resized import ResizedImageField
 
 AUTH_USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
 
@@ -20,6 +22,9 @@ class Song(models.Model):
     def __str__(self):
         return self.title
 
+    def body_nbsp(self):
+        return self.body.replace(' ', '&nbsp;')
+
 
 class Tag(models.Model):
     title = models.CharField("Song's tag", max_length=100)
@@ -28,7 +33,13 @@ class Tag(models.Model):
     def __str__(self):
         return self.title
 
-#
+
+class Profile(models.Model):
+    user = models.OneToOneField(AUTH_USER_MODEL)
+    # image = models.ImageField(upload_to='avatars')
+    image = ResizedImageField(upload_to='avatars')
+
+
 # class SongTag(models.Model):
 #     song = models.ForeignKey(Song)
 #     tag = models.ForeignKey(Tag)

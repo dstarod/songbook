@@ -82,9 +82,16 @@ WSGI_APPLICATION = 'songbook.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'songbook',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': '127.0.0.1'
+    },
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    # }
 }
 
 # 'django.db.backends.postgresql'
@@ -128,6 +135,13 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'chords', 'static', 'chords', 'upload')
+
+# https://github.com/un1t/django-resized
+# python3 -m pip install django-resized
+DJANGORESIZED_DEFAULT_SIZE = [100, 100]
+DJANGORESIZED_DEFAULT_QUALITY = 75
+DJANGORESIZED_DEFAULT_KEEP_META = True
 
 # https://django-registration.readthedocs.org/en/2.0.4/quickstart.html#quickstart
 ACCOUNT_ACTIVATION_DAYS = 1

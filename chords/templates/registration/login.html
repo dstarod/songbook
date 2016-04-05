@@ -3,7 +3,20 @@
 {% block content %}
     <form method="post">
         {% csrf_token%}
-        {{ form }}
+
+        <div class="row">
+            <div class="input-field col l6 m6 s12">
+                {{ form.username.errors }}
+                {{ form.username }}
+                {{ form.username.label_tag }}
+            </div>
+            <div class="input-field col l6 m6 s12">
+                {{ form.password.errors }}
+                {{ form.password }}
+                {{ form.password.label_tag }}
+            </div>
+        </div>
+
         <div class="center">
             <input type="submit" value="Submit" class="btn"/>
             <br><br>

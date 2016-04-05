@@ -26,3 +26,4 @@ class TagAdmin(admin.ModelAdmin):
 admin.site.register(models.Song)
 # admin.site.register(models.Tag, TagAdmin)
 admin.site.register(models.Tag)
+admin.site.register(models.Profile)
