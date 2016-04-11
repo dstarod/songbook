@@ -41,6 +41,12 @@ class SongProfileCreate(generic.CreateView):
     success_url = reverse_lazy('songs:song_list')
     fields = ('author', 'composer', 'year', 'translator')
 
+    def get_initial(self, *args, **kwargs):
+        # Get only user tags
+        super(SongProfileCreate, self).get_initial()
+        self.initial = {'song': self.kwargs['pk']}
+        return self.initial
+
     def get_queryset(self):
         # Only users songs
         return SongProfile.objects.filter(song__user_id=self.request.user.id)

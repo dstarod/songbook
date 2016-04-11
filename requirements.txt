@@ -2,3 +2,6 @@ sqlalchemy
 psycopg2
 django
 gunicorn
+Pillow
+django-resized
+django-registration

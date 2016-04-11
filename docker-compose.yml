@@ -1,3 +1,5 @@
+# docker run -ti --net host -v $PWD/pgdata:/pgdata -e PGDATA=/pgdata -e POSTGRES_DB=songbook postgres:9.5
+
 gunicorn:
     image: py35
     restart: always
