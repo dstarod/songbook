@@ -4,3 +4,4 @@ __pycache__
 *.sqlite3
 chords/migrations/0*
 private.py
+upload/*
