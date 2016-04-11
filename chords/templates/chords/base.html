@@ -18,23 +18,36 @@
             <a id="logo-container" href="{% url 'songs:index' %}" class="brand-logo">Songbook</a>
 
             <ul class="right hide-on-med-and-down">
-                <li class="{% block songs_nav %}{% endblock %}"><a href="{% url 'songs:index' %}">Songs</a></li>
+                <li><a href="{% url 'songs:index' %}">Published</a></li>
+                <li class="{% block songs_nav %}{% endblock %}"><a href="{% url 'songs:song_list' %}">Songs</a></li>
                 {% if user.is_authenticated %}
-                    <li class="{% block tags_nav %}{% endblock %}"><a href="{% url 'songs:tags' %}">Tags</a></li>
-                    <li><a href="/accounts/profile/">{{ user }}</a></li>
-                    <li><a href="/accounts/logout/">Logout</a></li>
+                    <li class="{% block tags_nav %}{% endblock %}"><a href="{% url 'songs:tag_list' %}">Tags</a></li>
+                    <li><a href="/accounts/profile/">Profile</a></li>
+                    <li><a href="/accounts/logout/">{{ user }} / Logout</a></li>
                 {% else %}
                     <li><a href="/accounts/login/">Login</a></li>
                     <li><a href="/accounts/register/">Register</a></li>
                 {% endif %}
                 {% if user.is_superuser %}
-                    <li><a href="/admin/">Admin</a></li>
+                    <li><a href="/admin/"><i class="material-icons">settings</i></a></li>
                 {% endif %}
             </ul>
 
             <!-- Mobile section -->
             <ul id="nav-mobile" class="side-nav">
-                <li><a href="{% url 'songs:index' %}">Songs</a></li>
+                <li><a href="{% url 'songs:index' %}">Published</a></li>
+                <li><a href="{% url 'songs:song_list' %}">Songs</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'songs:tag_list' %}">Tags</a></li>
+                    <li><a href="/accounts/profile/">Profile</a></li>
+                    <li><a href="/accounts/logout/">Logout</a></li>
+                {% else %}
+                    <li><a href="/accounts/login/">{{ user }} / Login</a></li>
+                    <li><a href="/accounts/register/">Register</a></li>
+                {% endif %}
+                {% if user.is_superuser %}
+                    <li><a href="/admin/"><i class="material-icons">settings</i></a></li>
+                {% endif %}
             </ul>
             <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
 
@@ -43,7 +56,7 @@
 
     <div class="section">
         <div class="row">
-            <div class="col l8 offset-l2">
+            <div class="col l8 offset-l2 m9 offset-m1 s12">
                 {% block content %}{% endblock %}
             </div>
         </div>
