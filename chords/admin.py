@@ -3,11 +3,12 @@ from . import models
 
 
 class SongAdmin(admin.ModelAdmin):
-    fieldsets = (
-        ('Title', {'fields': ['title', 'body', 'user', 'tags']}),
-    )
-    list_display = ('title', 'created_at')
-    list_filter = ('title',)
+    # fieldsets = (
+    #     ('Title', {'fields': ['title', 'body', 'user', 'tags']}),
+    # )
+    readonly_fields = ('user',)
+    list_display = ('title', 'public', 'approved', 'created_at', 'profile')
+    list_filter = ('approved', 'public')
     list_per_page = 10
     search_fields = ('title',)
 
@@ -20,10 +21,16 @@ class SongAdmin(admin.ModelAdmin):
 
 
 class TagAdmin(admin.ModelAdmin):
+    readonly_fields = ('user',)
     list_display = ('title', 'user')
 
-# admin.site.register(models.Song, SongAdmin)
-admin.site.register(models.Song)
-# admin.site.register(models.Tag, TagAdmin)
-admin.site.register(models.Tag)
+
+class SongProfileAdmin(admin.ModelAdmin):
+    list_display = ('song', 'author', 'composer', 'year')
+
+admin.site.register(models.Song, SongAdmin)
+# admin.site.register(models.Song)
+admin.site.register(models.Tag, TagAdmin)
+# admin.site.register(models.Tag)
 admin.site.register(models.Profile)
+admin.site.register(models.SongProfile, SongProfileAdmin)
