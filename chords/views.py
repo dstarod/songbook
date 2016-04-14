@@ -23,9 +23,12 @@ class PlaylistDetails(generic.DetailView):
     context_object_name = 'playlist'
     model = Playlist
 
-    # def get_queryset(self):
-    #     # Only users songs or public
-    #     return Playlist.objects.filter(songs__user=self.request.user)
+    def get_queryset(self):
+        # Only users songs or public
+        return Playlist.objects.filter(songs__user_id=self.request.user.id)
+
+
+# TODO Add and Edit playlist
 
 
 class SongsList(generic.ListView):

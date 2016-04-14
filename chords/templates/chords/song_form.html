@@ -18,9 +18,14 @@
         </div>
         <div class="row">
             <div class="input-field col l6 m6 s12">
+                {{ form.playlists }}{{ form.playlists.label_tag }}
+            </div>
+            <div class="input-field col l6 m6 s12">
                 {{ form.public }}{{ form.public.label_tag }}
             </div>
-            <div class="input-field col l6 m6 s12 center">
+        </div>
+        <div class="row center">
+            <div class="input-field">
                 <input type="submit" value="Submit" class="btn"/>
             </div>
         </div>

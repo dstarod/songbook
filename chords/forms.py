@@ -1,5 +1,5 @@
 from django import forms
-from .models import Song, Tag, SongProfile
+from .models import Song, Tag, SongProfile, Playlist
 
 
 class LoginForm(forms.Form):
@@ -14,10 +14,11 @@ class SongModelForm(forms.ModelForm):
         super(SongModelForm, self).__init__(*args, **kwargs)
         user = kwargs.get('initial', {}).get('user', None)
         self.fields['tags'].queryset = Tag.objects.filter(user=user)
+        self.fields['playlists'].queryset = Playlist.objects.filter(user=user)
 
     class Meta:
         model = Song
-        fields = ['title', 'tags', 'body', 'public']
+        fields = ['title', 'tags', 'body', 'public', 'playlists']
         widgets = {
             'title': forms.TextInput(attrs={'placeholder': 'Song title'}),
             'body': forms.Textarea(attrs={

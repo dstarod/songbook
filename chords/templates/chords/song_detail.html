@@ -37,7 +37,7 @@
             <a href="{% url 'songs:song_edit' pk=song.id %}" class="btn"><i class="material-icons left">input</i>Edit</a>
 
             {% if song.profile %}
-                <a href="{% url 'songs:song_profile_edit' pk=song.id %}" class="btn"><i class="material-icons left">input</i>Edit profile</a>
+                <a href="{% url 'songs:song_profile_edit' pk=song.profile.id %}" class="btn"><i class="material-icons left">input</i>Edit profile</a>
             {% else %}
                 <a href="{% url 'songs:song_profile_create' pk=song.id %}" class="btn"><i class="material-icons left">input</i>Create profile</a>
             {% endif %}
