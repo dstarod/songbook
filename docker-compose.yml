@@ -6,9 +6,7 @@ postgres:
     log_opt:
         max-size: 5m
     container_name: songlist-postgres
-    # net: host
-    ports:
-        - 5433:5432
+    net: host
     volumes:
         - ./pgdata:/pgdata
     environment:
