@@ -20,6 +20,7 @@
             <ul class="right hide-on-med-and-down">
                 <li><a href="{% url 'songs:index' %}">Published</a></li>
                 <li class="{% block songs_nav %}{% endblock %}"><a href="{% url 'songs:song_list' %}">Songs</a></li>
+                <li class="{% block playlist_nav %}{% endblock %}"><a href="{% url 'songs:playlist_list' %}">Playlists</a></li>
                 {% if user.is_authenticated %}
                     <li class="{% block tags_nav %}{% endblock %}"><a href="{% url 'songs:tag_list' %}">Tags</a></li>
                     <li><a href="/accounts/profile/">Profile</a></li>

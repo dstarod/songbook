@@ -20,6 +20,9 @@ urlpatterns = [
     url(r'^tag/create/$', login_required(views.TagCreate.as_view()), name='tag_create'),
     url(r'^tag/edit/(?P<pk>[0-9]+)$', login_required(views.TagEdit.as_view()), name='tag_edit'),
     url(r'^tag/delete/(?P<pk>[0-9]+)$', login_required(views.TagDelete.as_view()), name='tag_delete'),
+
+    url(r'^playlist/list/$', login_required(views.PlaylistList.as_view()), name='playlist_list'),
+    url(r'^playlist/(?P<pk>[0-9]+)/$', login_required(views.PlaylistDetails.as_view()), name='playlist'),
 ]
 
 # from django.contrib.auth.decorators import permission_required

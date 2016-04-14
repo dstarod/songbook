@@ -21,13 +21,16 @@
     </span></p>
     {% endautoescape %}
 
-    {% if song.user == user %}
-        <div class="row">
+    <div class="row">
+        {% if song.user == user %}
             {% for tag in song.tags.all %}
                 <div class="chip teal"><a class="white-text" href="{% url 'songs:tag' pk=tag.id %}">{{ tag }}</a></div>
             {% endfor %}
-        </div>
-    {% endif %}
+            {% for playlist in song.playlists.all %}
+                <div class="chip teal"><a class="white-text" href="{% url 'songs:playlist' pk=playlist.id %}">{{ playlist }}</a></div>
+            {% endfor %}
+        {% endif %}
+    </div>
 
     {% if song.user == user %}
         <div class="row center">

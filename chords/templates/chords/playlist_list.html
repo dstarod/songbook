@@ -1,0 +1,15 @@
+{% extends 'chords/playlist.html' %}
+
+{% block content %}
+
+    <h1 class="header center orange-text light">Playlists</h1>
+
+    <div class="collection">
+        {% for playlist in playlists %}
+            <a class="collection-item" href="{% url 'songs:playlist' pk=playlist.id %}">
+                {{ playlist.title }}<span class="badge teal lighten-2 white-text">{{ playlist.songs.count }}</span>
+            </a>
+        {% endfor %}
+    </div>
+
+{% endblock %}

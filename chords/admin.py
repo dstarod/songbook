@@ -28,9 +28,14 @@ class TagAdmin(admin.ModelAdmin):
 class SongProfileAdmin(admin.ModelAdmin):
     list_display = ('song', 'author', 'composer', 'year')
 
+
+class PlaylistAdmin(admin.ModelAdmin):
+    list_display = ('title', 'user')
+
 admin.site.register(models.Song, SongAdmin)
 # admin.site.register(models.Song)
 admin.site.register(models.Tag, TagAdmin)
 # admin.site.register(models.Tag)
 admin.site.register(models.Profile)
+admin.site.register(models.Playlist, PlaylistAdmin)
 admin.site.register(models.SongProfile, SongProfileAdmin)

@@ -24,8 +24,9 @@ class Song(models.Model):
     body = models.TextField("song's text", null=False, default='')
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True, editable=False)
-    user = models.ForeignKey(AUTH_USER_MODEL, editable=False)
+    user = models.ForeignKey(AUTH_USER_MODEL, editable=False, related_name='songs')
     tags = models.ManyToManyField('Tag', blank=True, related_name="songs")
+    playlists = models.ManyToManyField('Playlist', related_name='songs', blank=True)
 
     public = models.BooleanField('public', default=False, null=False)
     approved = models.BooleanField('approved', default=False, null=False)
@@ -54,6 +55,14 @@ class Profile(models.Model):
     image = ResizedImageField(upload_to='avatars')
 
 
+class Playlist(models.Model):
+    title = models.CharField(max_length=256, null=False, blank=False)
+    user = models.ForeignKey(AUTH_USER_MODEL, related_name='playlists')
+
+    def __str__(self):
+        return self.title
+
+
 class SongProfile(models.Model):
     song = models.OneToOneField(Song, related_name='profile')
     author = models.CharField(max_length=256, null=False)
@@ -64,12 +73,14 @@ class SongProfile(models.Model):
     def __str__(self):
         return self.author
 
+
+
+
 # python3 manage.py createsuperuser
 # python3 manage.py makemigrations
 # python3 manage.py migrate
 # python3 manage.py sqlmigrate chords 0001
 # python3 manage.py check
 
-# TODO: Song info: Author, composer, translator, year. Public approved if info filled.
 # TODO: Users group. Email to users.
 # TODO: Playlist. Shared to user/group for read only / edit.

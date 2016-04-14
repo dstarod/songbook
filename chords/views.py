@@ -4,9 +4,28 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.views import generic
 from django.core.urlresolvers import reverse_lazy
-from .models import Song, Tag, SongProfile
+from .models import Song, Tag, SongProfile, Playlist
 from .forms import LoginForm, SongModelForm
 from django.db.models import Q
+
+
+class PlaylistList(generic.ListView):
+    context_object_name = 'playlists'
+    paginate_by = 10
+
+    def get_queryset(self):
+        # Only users songs or public
+        # return Song.objects.filter(Q(user_id=self.request.user.id) | Q(public=True))
+        return Playlist.objects.filter(user_id=self.request.user.id)
+
+
+class PlaylistDetails(generic.DetailView):
+    context_object_name = 'playlist'
+    model = Playlist
+
+    # def get_queryset(self):
+    #     # Only users songs or public
+    #     return Playlist.objects.filter(songs__user=self.request.user)
 
 
 class SongsList(generic.ListView):
