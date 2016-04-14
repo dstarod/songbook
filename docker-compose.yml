@@ -1,11 +1,26 @@
-# docker run -ti --net host -v $PWD/pgdata:/pgdata -e PGDATA=/pgdata -e POSTGRES_DB=songbook postgres:9.5
+# docker build -t py35-songlist .
 
-gunicorn:
-    image: py35
+postgres:
+    image: postgres:9.5
     restart: always
     log_opt:
         max-size: 5m
-    container_name: gunicorn
+    container_name: songlist-postgres
+    # net: host
+    ports:
+        - 5433:5432
+    volumes:
+        - ./pgdata:/pgdata
+    environment:
+        - PGDATA=/pgdata
+        - POSTGRES_DB=songbook
+
+gunicorn:
+    image: py35-songlist
+    restart: always
+    log_opt:
+        max-size: 5m
+    container_name: songlist-gunicorn
     net: host
     volumes:
         - .:/app
@@ -17,7 +32,7 @@ nginx:
     restart: always
     log_opt:
         max-size: 5m
-    container_name: nginx
+    container_name: songlist-nginx
     net: host
     volumes:
         - .:/app

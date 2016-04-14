@@ -1,7 +1,8 @@
 # Created by .ignore support plugin (hsz.mobi)
 .idea
 __pycache__
-*.sqlite3
-chords/migrations/0*
+/chords/migrations/0*
 private.py
-upload/*
+/media
+/common/logs
+/static

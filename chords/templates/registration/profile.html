@@ -3,12 +3,10 @@
 
     <div class="row">
         {% if user.profile.image %}
-            {% load static %}
-            <img width="100" class="circle responsive-img" src="{% static 'chords/upload' %}/{{ user.profile.image.url }}" alt="">
+            <img width="100" class="circle responsive-img" src="{{ user.profile.image.url }}" alt="">
         {% endif %}
         Profile {{ user.email }}
         {{ user.username }}
     </div>
-
 
 {% endblock %}
