@@ -1,5 +1,5 @@
 from django import forms
-from .models import Song, Tag
+from .models import Song, Tag, SongProfile
 
 
 class LoginForm(forms.Form):
