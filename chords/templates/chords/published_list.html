@@ -1,7 +1,7 @@
-{% extends 'chords/song.html' %}
+{% extends 'chords/base.html' %}
 
 {% block content %}
-    <h1 class="header center orange-text light">Song list</h1>
+    <h1 class="header center orange-text light">Published song list</h1>
 
     <div class="collection">
         {% for song in songs %}
@@ -9,16 +9,10 @@
         {% endfor %}
     </div>
 
-    {% if user.is_authenticated %}
-        <div class="row center">
-            <a class="btn"  href="{% url 'songs:song_create' %}">Create new one</a>
-        </div>
-    {% endif %}
-
     {% if is_paginated %}
         <ul class="pagination center">
             {% if page_obj.has_previous %}
-                <li class="waves-effect"><a href="{% url 'songs:song_list' %}?page={{ page_obj.previous_page_number }}"><i class="material-icons">chevron_left</i></a></li>
+                <li class="waves-effect"><a href="{% url 'songs:index' %}?page={{ page_obj.previous_page_number }}"><i class="material-icons">chevron_left</i></a></li>
             {% else %}
                 <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
             {% endif %}
@@ -26,7 +20,7 @@
             <li class="active"><a href="#!">{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</a></li>
 
             {% if page_obj.has_next %}
-                <li class="waves-effect"><a href="{% url 'songs:song_list' %}?page={{ page_obj.next_page_number }}"><i class="material-icons">chevron_right</i></a></li>
+                <li class="waves-effect"><a href="{% url 'songs:index' %}?page={{ page_obj.next_page_number }}"><i class="material-icons">chevron_right</i></a></li>
             {% else %}
                 <li class="disabled"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
             {% endif %}

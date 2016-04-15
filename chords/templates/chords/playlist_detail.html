@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    <h1 class="header center orange-text light">Playlist: "{{ playlist }}"</h1>
+    <h1 class="header center orange-text light">Playlist "{{ playlist }}"</h1>
 
     <div class="collection">
         {% for song in playlist.songs.all %}
@@ -11,5 +11,12 @@
             </a>
         {% endfor %}
     </div>
+
+    {% if playlist.user == user %}
+        <div class="row center">
+            <a href="{% url 'songs:playlist_edit' pk=playlist.id %}" class="btn"><i class="material-icons left">input</i>Edit</a>
+            <a href="{% url 'songs:playlist_delete' pk=playlist.id %}" class="btn"><i class="material-icons left">delete</i>Delete</a>
+        </div>
+    {% endif %}
 
 {% endblock %}

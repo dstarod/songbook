@@ -1,10 +1,9 @@
-{% extends 'chords/tag.html' %}
+{% extends 'chords/playlist.html' %}
 
 {% block content %}
     {% if form.title %}
-        <h1 class="header center orange-text light">Tag "{{ form.title.value }}"</h1>
+        <h1 class="header center orange-text light">Playlist "{{ form.title.value }}"</h1>
     {% endif %}
-
     <form method="post">
         {% csrf_token %}
         {{ form }}

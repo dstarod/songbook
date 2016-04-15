@@ -23,6 +23,9 @@ urlpatterns = [
 
     url(r'^playlist/list/$', login_required(views.PlaylistList.as_view()), name='playlist_list'),
     url(r'^playlist/(?P<pk>[0-9]+)/$', login_required(views.PlaylistDetails.as_view()), name='playlist'),
+    url(r'^playlist/edit/(?P<pk>[0-9]+)/$', login_required(views.PlaylistEdit.as_view()), name='playlist_edit'),
+    url(r'^playlist/delete/(?P<pk>[0-9]+)/$', login_required(views.PlaylistDelete.as_view()), name='playlist_delete'),
+    url(r'^playlist/create/$', login_required(views.PlaylistCreate.as_view()), name='playlist_create'),
 ]
 
 # from django.contrib.auth.decorators import permission_required

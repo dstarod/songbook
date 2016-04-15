@@ -11,7 +11,6 @@ from django.db.models import Q
 
 class PlaylistList(generic.ListView):
     context_object_name = 'playlists'
-    paginate_by = 10
 
     def get_queryset(self):
         # Only users songs or public
@@ -25,16 +24,38 @@ class PlaylistDetails(generic.DetailView):
 
     def get_queryset(self):
         # Only users songs or public
-        return Playlist.objects.filter(songs__user_id=self.request.user.id)
+        return Playlist.objects.filter(user_id=self.request.user.id)
 
 
-# TODO Add and Edit playlist
+class PlaylistCreate(generic.CreateView):
+    model = Playlist
+    success_url = reverse_lazy('songs:playlist_list')
+    fields = ['title']
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(PlaylistCreate, self).form_valid(form)
+
+
+class PlaylistEdit(generic.UpdateView):
+    model = Playlist
+    fields = ['title']
+    success_url = reverse_lazy('songs:playlist_list')
+
+
+class PlaylistDelete(generic.DeleteView):
+    model = Playlist
+    template_name = 'chords/playlist_delete.html'
+    success_url = reverse_lazy('songs:playlist_list')
+
+    def get_queryset(self):
+        return Playlist.objects.filter(user_id=self.request.user.id)
 
 
 class SongsList(generic.ListView):
     context_object_name = 'songs'
     # https://docs.djangoproject.com/en/1.9/topics/pagination/
-    paginate_by = 10
+    paginate_by = 2
 
     def get_queryset(self):
         # Only users songs or public
@@ -44,6 +65,8 @@ class SongsList(generic.ListView):
 
 class SongsListPublic(generic.ListView):
     context_object_name = 'songs'
+    paginate_by = 2
+    template_name = 'chords/published_list.html'
 
     def get_queryset(self):
         # Only users songs or public

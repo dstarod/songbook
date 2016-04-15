@@ -12,4 +12,10 @@
         {% endfor %}
     </div>
 
+    {% if user.is_authenticated %}
+        <div class="row center">
+            <a class="btn"  href="{% url 'songs:playlist_create' %}">Create new one</a>
+        </div>
+    {% endif %}
+
 {% endblock %}
