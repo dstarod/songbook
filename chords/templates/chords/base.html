@@ -15,7 +15,7 @@
 
     <nav class="amber darken-4" role="navigation">
         <div class="nav-wrapper container">
-            <a id="logo-container" href="{% url 'songs:index' %}" class="brand-logo">Songlist</a>
+            <a id="logo-container" href="{% url 'songs:index' %}" class="brand-logo">{% block title %}Songlist{% endblock %}</a>
 
             <ul class="right hide-on-med-and-down">
                 <li class="{% if request.path == '/' %}active{% endif %}"><a href="{% url 'songs:index' %}">Published</a></li>
@@ -38,12 +38,13 @@
             <ul id="nav-mobile" class="side-nav">
                 <li><a href="{% url 'songs:index' %}">Published</a></li>
                 <li><a href="{% url 'songs:song_list' %}">Songs</a></li>
+                <li><a href="{% url 'songs:playlist_list' %}">Playlists</a></li>
                 {% if user.is_authenticated %}
                     <li><a href="{% url 'songs:tag_list' %}">Tags</a></li>
                     <li><a href="/accounts/profile/">Profile</a></li>
-                    <li><a href="/accounts/logout/">Logout</a></li>
+                    <li><a href="/accounts/logout/">{{ user }} / Logout</a></li>
                 {% else %}
-                    <li><a href="/accounts/login/">{{ user }} / Login</a></li>
+                    <li><a href="/accounts/login/">Login</a></li>
                     <li><a href="/accounts/register/">Register</a></li>
                 {% endif %}
                 {% if user.is_superuser %}
