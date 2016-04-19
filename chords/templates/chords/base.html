@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-    <title>Songlist</title>
+    <title>{% block title %}Songlist{% endblock %}</title>
     <!-- CSS  -->
     {% load staticfiles %}
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -38,12 +38,13 @@
             <ul id="nav-mobile" class="side-nav">
                 <li><a href="{% url 'songs:index' %}">Published</a></li>
                 <li><a href="{% url 'songs:song_list' %}">Songs</a></li>
+                <li><a href="{% url 'songs:playlist_list' %}">Playlists</a></li>
                 {% if user.is_authenticated %}
                     <li><a href="{% url 'songs:tag_list' %}">Tags</a></li>
                     <li><a href="/accounts/profile/">Profile</a></li>
-                    <li><a href="/accounts/logout/">Logout</a></li>
+                    <li><a href="/accounts/logout/">{{ user }} / Logout</a></li>
                 {% else %}
-                    <li><a href="/accounts/login/">{{ user }} / Login</a></li>
+                    <li><a href="/accounts/login/">Login</a></li>
                     <li><a href="/accounts/register/">Register</a></li>
                 {% endif %}
                 {% if user.is_superuser %}
