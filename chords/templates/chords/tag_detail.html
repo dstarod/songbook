@@ -1,9 +1,9 @@
 {% extends 'chords/tag.html' %}
 
-{% block title %}{{ tag.title }}{% endblock %}
+{#{% block title %}{{ tag.title }}{% endblock %}#}
 
 {% block content %}
-{#    <h1 class="header center orange-text light">Tag "{{ tag.title }}"</h1>#}
+    <h1 class="header center orange-text light">Tag "{{ tag.title }}"</h1>
 
     <div class="row center">
         <a href="{% url 'songs:tag_edit' pk=tag.id %}" class="btn"><i class="material-icons left">input</i>Edit</a>
