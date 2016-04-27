@@ -1,33 +1,26 @@
 {% extends 'chords/base.html' %}
 {% block content %}
-    <form action="" method="post">
+    <form method="post" class="form">
         {% csrf_token%}
-        <div class="row">
-            <div class="input-field col l6 m6 s12">
-                {{ form.username.errors }}
-                {{ form.username }}
-                {{ form.username.label_tag }}
-            </div>
-            <div class="input-field col l6 m6 s12">
-                {{ form.email.errors }}
-                {{ form.email }}
-                {{ form.email.label_tag }}
-            </div>
+        <div class="form-group col-sm-offset-2 col-sm-8 col-md-offset-4 col-md-4">
+            {{ form.username.errors }}
+            <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
+            <input class="form-control" type="text" id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}" value="{{ form.username.value|default:"" }}">
+
+            {{ form.email.errors }}
+            <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+            <input class="form-control" type="text" id="{{ form.email.id_for_label }}" name="{{ form.email.html_name }}" value="{{ form.email.value|default:"" }}">
+
+            {{ form.password1.errors }}
+            <label for="{{ form.password1.id_for_label }}">{{ form.password1.label }}</label>
+            <input class="form-control" type="text" id="{{ form.password1.id_for_label }}" name="{{ form.password1.html_name }}" value="{{ form.password1.value|default:"" }}">
+
+            {{ form.password2.errors }}
+            <label for="{{ form.password2.id_for_label }}">{{ form.password2.label }}</label>
+            <input class="form-control" type="text" id="{{ form.password2.id_for_label }}" name="{{ form.password2.html_name }}" value="{{ form.password2.value|default:"" }}">
         </div>
-        <div class="row">
-            <div class="input-field col l6 m6 s12">
-                {{ form.password1.errors }}
-                {{ form.password1 }}
-                {{ form.password1.label_tag }}
-            </div>
-            <div class="input-field col l6 m6 s12">
-                {{ form.password2.errors }}
-                {{ form.password2 }}
-                {{ form.password2.label_tag }}
-            </div>
-        </div>
-        <div class="input-field center" >
-            <input type="submit" class="btn">
+        <div class="form-group col-sm-offset-2 col-sm-8 col-md-offset-4 col-md-4">
+            <input type="submit" class="btn btn-success col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10 col-xs-10 col-xs-offset-1">
         </div>
         <br>
     </form>

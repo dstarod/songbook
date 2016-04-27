@@ -2,18 +2,16 @@
 
 {% block content %}
 
-    <h1 class="header center orange-text light">Tag list</h1>
+    <h2 class="text-center">Tag list</h2>
 
-    <div class="collection">
+    <div class="list-group">
         {% for tag in tags %}
-            <a class="collection-item" href="{% url 'songs:tag' pk=tag.id %}">
-                {{ tag.title }}<span class="badge teal lighten-2 white-text">{{ tag.songs.count }}</span>
+            <a class="list-group-item" href="{% url 'songs:tag' pk=tag.id %}">
+                {{ tag.title }}<span class="badge">{{ tag.songs.count }}</span>
             </a>
         {% endfor %}
     </div>
 
-    <div class="row center">
-        <a class="btn"  href="{% url 'songs:tag_create' %}">Create new one</a>
-    </div>
+    <a class="btn btn-success" href="{% url 'songs:tag_create' %}">Create new one</a>
 
 {% endblock %}

@@ -1,12 +1,10 @@
 {% extends 'chords/song.html' %}
 
-{#{% block title %}{{ song.title }}{% endblock %}#}
-
 {% block content %}
-    <h4 class="header center orange-text">{{ song.title }}</h4>
+    <h2 class="text-center">{{ song.title }}</h2>
 
     {% if song.profile %}
-        <div class="center">
+        <div class="text-center">
             Author: {{ song.profile.author }}. Composer: {{ song.profile.composer }}.
             {% if song.profile.translator %}
                 Translator: {{ song.profile.translator }}.
@@ -15,36 +13,36 @@
                 {{ song.profile.year }}.
             {% endif %}
         </div>
+        <br>
     {% endif %}
 
     {% autoescape off %}
-    <p class="song_body"><span>
-        {{ song.body_nbsp|linebreaksbr }}
-    </span></p>
+    <p class="song_body"><span>{{ song.body_nbsp|linebreaksbr }}</span></p>
     {% endautoescape %}
 
     <div class="row">
         {% if song.user == user %}
             {% for tag in song.tags.all %}
-                <div class="chip teal"><a class="white-text" href="{% url 'songs:tag' pk=tag.id %}">{{ tag }}</a></div>
+                <a class="label label-info" href="{% url 'songs:tag' pk=tag.id %}">{{ tag }}</a>
             {% endfor %}
             {% for playlist in song.playlists.all %}
-                <div class="chip teal"><a class="white-text" href="{% url 'songs:playlist' pk=playlist.id %}">{{ playlist }}</a></div>
+                <a class="label label-primary" href="{% url 'songs:playlist' pk=playlist.id %}">{{ playlist }}</a>
             {% endfor %}
         {% endif %}
     </div>
 
     {% if song.user == user %}
-        <div class="row center">
-            <a href="{% url 'songs:song_edit' pk=song.id %}" class="btn"><i class="material-icons left">input</i>Edit</a>
+        <br>
+        <div class="row">
+            <a href="{% url 'songs:song_edit' pk=song.id %}" class="btn btn-warning">Edit</a>
 
             {% if song.profile %}
-                <a href="{% url 'songs:song_profile_edit' pk=song.profile.id %}" class="btn"><i class="material-icons left">input</i>Edit profile</a>
+                <a href="{% url 'songs:song_profile_edit' pk=song.profile.id %}" class="btn btn-primary">Edit profile</a>
             {% else %}
-                <a href="{% url 'songs:song_profile_create' pk=song.id %}" class="btn"><i class="material-icons left">input</i>Create profile</a>
+                <a href="{% url 'songs:song_profile_create' pk=song.id %}" class="btn btn-success">Create profile</a>
             {% endif %}
 
-            <a href="{% url 'songs:song_delete' pk=song.id %}" class="btn"><i class="material-icons left">delete</i>Delete</a>
+            <a href="{% url 'songs:song_delete' pk=song.id %}" class="btn btn-danger">Delete</a>
         </div>
     {% endif %}
 

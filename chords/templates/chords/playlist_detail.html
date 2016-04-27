@@ -1,24 +1,20 @@
 {% extends 'chords/playlist.html' %}
 
-{#{% block title %}{{ playlist.title }}{% endblock %}#}
-
 {% block content %}
 
-    <h1 class="header center orange-text light">Playlist "{{ playlist.title }}"</h1>
+    <h2 class="text-center">Playlist "{{ playlist.title }}"</h2>
 
-    <div class="collection">
+    <div class="list-group">
         {% for song in playlist.songs.all %}
-            <a class="collection-item" href="{% url 'songs:song' pk=song.id %}">
+            <a class="list-group-item" href="{% url 'songs:song' pk=song.id %}">
                 {{ song.title }}
             </a>
         {% endfor %}
     </div>
 
     {% if playlist.user == user %}
-        <div class="row center">
-            <a href="{% url 'songs:playlist_edit' pk=playlist.id %}" class="btn"><i class="material-icons left">input</i>Edit</a>
-            <a href="{% url 'songs:playlist_delete' pk=playlist.id %}" class="btn"><i class="material-icons left">delete</i>Delete</a>
-        </div>
+        <a href="{% url 'songs:playlist_edit' pk=playlist.id %}" class="btn btn-warning">Edit</a>
+        <a href="{% url 'songs:playlist_delete' pk=playlist.id %}" class="btn btn-danger">Delete</a>
     {% endif %}
 
 {% endblock %}

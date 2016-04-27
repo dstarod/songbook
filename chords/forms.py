@@ -22,6 +22,6 @@ class SongModelForm(forms.ModelForm):
         widgets = {
             'title': forms.TextInput(attrs={'placeholder': 'Song title'}),
             'body': forms.Textarea(attrs={
-                'class': 'song_body_edit materialize-textarea'
+                'class': 'song_body'
             })
         }

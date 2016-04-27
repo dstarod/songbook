@@ -1,25 +1,18 @@
 {% extends 'chords/base.html' %}
 
 {% block content %}
-    <form method="post">
+    <form method="post" class="form">
         {% csrf_token%}
-
-        <div class="row">
-            <div class="input-field col l6 m6 s12">
-                {{ form.username.errors }}
-                {{ form.username }}
-                {{ form.username.label_tag }}
-            </div>
-            <div class="input-field col l6 m6 s12">
-                {{ form.password.errors }}
-                {{ form.password }}
-                {{ form.password.label_tag }}
-            </div>
+        <div class="form-group col-sm-offset-2 col-sm-8 col-md-offset-4 col-md-4">
+            {{ form.username.errors }}
+            <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
+            <input class="form-control" type="text" id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}" value="{{ form.username.value|default:"" }}">
+            {{ form.password.errors }}
+            <label for="{{ form.password.id_for_label }}">{{ form.password.label }}</label>
+            <input class="form-control" type="password" name="{{ form.password.html_name }}" value="{{ form.password.value|default:"" }}">
         </div>
-
-        <div class="center">
-            <input type="submit" value="Submit" class="btn"/>
-            <br><br>
+        <div class="form-group col-sm-offset-2 col-sm-8 col-md-offset-4 col-md-4">
+            <input type="submit" value="Submit" class="btn btn-success"/>
         </div>
     </form>
 {% endblock %}

@@ -1,35 +1,4 @@
-/* Custom Stylesheet */
-/**
- * Use this file to override Materialize files so you can update
- * the core Materialize files in the future
- *
- * Made By MaterializeCSS.com
- */
-
-.icon-block {
-  padding: 0 15px;
-}
-.icon-block .material-icons {
-	font-size: inherit;
-}
-.song_body span{
+/* Monospace font for song texts */
+.song_body, #id_body{
     font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
-    font-size: 24pt;
-}
-
-.song_body_edit{
-    white-space: pre-wrap;
-    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
-    font-size: 24pt;
-}
-
-.song_body_edit{
-    font-size: 14pt;
-}
-
-/* Admin customize */
-#song_form #id_body{
-    white-space: pre-wrap;
-    font-family: monospace;
-    font-size: 24pt;
 }
