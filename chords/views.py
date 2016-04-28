@@ -5,7 +5,7 @@ from django.contrib.auth import logout
 from django.views import generic
 from django.core.urlresolvers import reverse_lazy
 from .models import Song, Tag, SongProfile, Playlist
-from .forms import LoginForm, SongModelForm
+from .forms import LoginForm, SongModelForm, SongProfileModelForm
 from django.db.models import Q
 
 
@@ -29,8 +29,8 @@ class PlaylistDetails(generic.DetailView):
 
 class PlaylistCreate(generic.CreateView):
     model = Playlist
-    success_url = reverse_lazy('songs:playlist_list')
     fields = ['title']
+    success_url = reverse_lazy('songs:playlist_list')
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -83,8 +83,9 @@ class SongDetail(generic.DetailView):
 
 class SongProfileCreate(generic.CreateView):
     model = SongProfile
+    form_class = SongProfileModelForm
     success_url = reverse_lazy('songs:song_list')
-    fields = ('author', 'composer', 'year', 'translator')
+    # fields = ('author', 'composer', 'year', 'translator')
 
     def form_valid(self, form):
         form.instance.song_id = self.kwargs['pk']
@@ -97,8 +98,9 @@ class SongProfileCreate(generic.CreateView):
 
 class SongProfileEdit(generic.UpdateView):
     model = SongProfile
+    form_class = SongProfileModelForm
     success_url = reverse_lazy('songs:song_list')
-    fields = ('author', 'composer', 'year', 'translator')
+    # fields = ('author', 'composer', 'year', 'translator')
 
     def get_queryset(self):
         # Only users songs

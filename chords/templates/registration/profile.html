@@ -1,12 +1,18 @@
 {% extends 'chords/base.html' %}
 {% block content %}
 
-    <div class="row">
-        {% if user.profile.image %}
-            <img width="100" class="circle responsive-img" src="{{ user.profile.image.url }}" alt="">
-        {% endif %}
-        Profile {{ user.email }}
-        {{ user.username }}
+    <div class="col-md-offset-2 col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">{{ user.username|title }}'s profile</h2>
+            </div>
+            <div class="panel-body">
+                {% if user.profile.image %}
+                    <img width="100" class="circle responsive-img" src="{{ user.profile.image.url }}" alt="">
+                {% endif %}
+                Email: {{ user.email }}
+            </div>
+        </div>
     </div>
 
 {% endblock %}

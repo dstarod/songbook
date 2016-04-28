@@ -2,14 +2,18 @@
 
 {% block content %}
     {% if form.title %}
-        <h1 class="header center orange-text light">Playlist "{{ form.title.value }}"</h1>
+        <h2 class="text-center">Playlist "{{ form.title.value }}"</h2>
     {% endif %}
-    <form method="post">
+    <form method="post" class="form">
         {% csrf_token %}
-        {{ form }}
-        <div class="center">
-            <input type="submit" value="Submit" class="btn"/>
-            <br><br>
+        <div class="col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10">
+            <div class="form-group">
+                {% load bootstrap %}
+                {{ form|bootstrap }}
+            </div>
+            <div class="form-group text-center">
+                <input type="submit" value="Submit" class="btn btn-success"/>
+            </div>
         </div>
     </form>
 {% endblock %}

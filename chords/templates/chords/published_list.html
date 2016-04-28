@@ -3,10 +3,12 @@
 {% block content %}
     <h2 class="text-center">Published song list</h2>
 
-    <div class="list-group">
-        {% for song in songs %}
-            <a class="list-group-item" href="{% url 'songs:song' pk=song.id %}">{{ song }}</a>
-        {% endfor %}
+    <div class="row">
+        <div class="list-group col-md-offset-2 col-md-8">
+            {% for song in songs %}
+                <a class="list-group-item" href="{% url 'songs:song' pk=song.id %}">{{ song }}</a>
+            {% endfor %}
+        </div>
     </div>
 
     {% if is_paginated %}

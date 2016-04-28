@@ -1,4 +1,10 @@
 /* Monospace font for song texts */
+body{
+    padding-bottom: 20px;
+}
 .song_body, #id_body{
     font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+.song_show{
+    font-size: 20pt;
 }

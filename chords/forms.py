@@ -7,6 +7,18 @@ class LoginForm(forms.Form):
     password = forms.CharField(label='Password', max_length=100, widget=forms.PasswordInput, required=False)
 
 
+class SongProfileModelForm(forms.ModelForm):
+    class Meta:
+        model = SongProfile
+        fields = ['author', 'composer', 'translator', 'year']
+        widgets = {
+            'author': forms.TextInput(attrs={'class': 'form-control'}),
+            'composer': forms.TextInput(attrs={'class': 'form-control'}),
+            'translator': forms.TextInput(attrs={'class': 'form-control'}),
+            'year': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+
+
 class SongModelForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
@@ -18,10 +30,14 @@ class SongModelForm(forms.ModelForm):
 
     class Meta:
         model = Song
-        fields = ['title', 'tags', 'body', 'public', 'playlists']
+        fields = ['title', 'body', 'tags', 'playlists', 'public']
         widgets = {
-            'title': forms.TextInput(attrs={'placeholder': 'Song title'}),
+            'title': forms.TextInput(attrs={
+                'placeholder': 'Song title'
+            }),
             'body': forms.Textarea(attrs={
                 'class': 'song_body'
-            })
+            }),
+            'tags': forms.CheckboxSelectMultiple(),
+            'playlists': forms.CheckboxSelectMultiple(),
         }

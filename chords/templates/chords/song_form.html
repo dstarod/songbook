@@ -1,33 +1,23 @@
 {% extends 'chords/song.html' %}
 
 {% block content %}
-    <form action="" method="post">
+    <form action="" method="post" class="form">
         {% csrf_token %}
+        <div class="col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10">
+            <div class="form-group">
+                {% load bootstrap %}
+                {{ form|bootstrap }}
+            </div>
+            <div class="form-group text-center">
+                <input type="submit" value="Submit" class="btn btn-success"/>
+            </div>
+        </div>
 
-        <div class="row">
-            <div class="input-field col l6 m6 s12">
-                {{ form.title }}{{ form.title.label_tag }}
-            </div>
-            <div class="input-field col l6 m6 s12">
-                {{ form.tags }}{{ form.tags.label_tag }}
-            </div>
-        </div>
-
-        <div class="input-field col l12 m12 s12">
-            {{ form.body }}{{ form.body.label_tag }}
-        </div>
-        <div class="row">
-            <div class="input-field col l6 m6 s12">
-                {{ form.playlists }}{{ form.playlists.label_tag }}
-            </div>
-            <div class="input-field col l6 m6 s12">
-                {{ form.public }}{{ form.public.label_tag }}
-            </div>
-        </div>
-        <div class="row center">
-            <div class="input-field">
-                <input type="submit" value="Submit" class="btn"/>
-            </div>
-        </div>
+{#            {{ form.title.label_tag }}#}
+{#            {{ form.title }}#}
+{#            {{ form.tags }}{{ form.tags.label_tag }}#}
+{#            {{ form.body }}{{ form.body.label_tag }}#}
+{#            {{ form.playlists }}{{ form.playlists.label_tag }}#}
+{#            {{ form.public }}{{ form.public.label_tag }}#}
     </form>
 {% endblock %}

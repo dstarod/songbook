@@ -16,11 +16,17 @@
         <br>
     {% endif %}
 
-    {% autoescape off %}
-    <p class="song_body"><span>{{ song.body_nbsp|linebreaksbr }}</span></p>
-    {% endautoescape %}
-
     <div class="row">
+        <div class="col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10">
+            {# TODO Open full size #}
+            {% autoescape off %}
+                <p class="song_body song_show"><span>{{ song.body_nbsp|linebreaksbr }}</span></p>
+            {% endautoescape %}
+        </div>
+    </div>
+
+    <div class="text-center">
+        <br>
         {% if song.user == user %}
             {% for tag in song.tags.all %}
                 <a class="label label-info" href="{% url 'songs:tag' pk=tag.id %}">{{ tag }}</a>
@@ -33,16 +39,16 @@
 
     {% if song.user == user %}
         <br>
-        <div class="row">
-            <a href="{% url 'songs:song_edit' pk=song.id %}" class="btn btn-warning">Edit</a>
-
-            {% if song.profile %}
-                <a href="{% url 'songs:song_profile_edit' pk=song.profile.id %}" class="btn btn-primary">Edit profile</a>
-            {% else %}
-                <a href="{% url 'songs:song_profile_create' pk=song.id %}" class="btn btn-success">Create profile</a>
-            {% endif %}
-
-            <a href="{% url 'songs:song_delete' pk=song.id %}" class="btn btn-danger">Delete</a>
+        <div class="text-center">
+            <div class="btn-group" role="group" aria-label="...">
+                <a href="{% url 'songs:song_edit' pk=song.id %}" class="btn btn-default">Edit</a>
+                {% if song.profile %}
+                    <a href="{% url 'songs:song_profile_edit' pk=song.profile.id %}" class="btn btn-default">Profile</a>
+                {% else %}
+                    <a href="{% url 'songs:song_profile_create' pk=song.id %}" class="btn btn-default">Profile</a>
+                {% endif %}
+                <a href="{% url 'songs:song_delete' pk=song.id %}" class="btn btn-default">Delete</a>
+            </div>
         </div>
     {% endif %}
 

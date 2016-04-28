@@ -4,14 +4,18 @@
 
     <h2 class="text-center">Tag list</h2>
 
-    <div class="list-group">
+    <div class="row">
+        <div class="list-group col-md-offset-2 col-md-8">
         {% for tag in tags %}
             <a class="list-group-item" href="{% url 'songs:tag' pk=tag.id %}">
                 {{ tag.title }}<span class="badge">{{ tag.songs.count }}</span>
             </a>
         {% endfor %}
+        </div>
     </div>
 
-    <a class="btn btn-success" href="{% url 'songs:tag_create' %}">Create new one</a>
+    <div class="text-center">
+        <a class="btn btn-success" href="{% url 'songs:tag_create' %}">Create new one</a>
+    </div>
 
 {% endblock %}

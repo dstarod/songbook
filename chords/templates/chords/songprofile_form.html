@@ -1,34 +1,30 @@
 {% extends 'chords/song.html' %}
 
+{% load chord_extras %}
+
 {% block content %}
-    <form action="" method="post">
+    <form method="post" class="form">
         {% csrf_token %}
 
-        <div class="row">
-            <div class="input-field col l6 m6 s12">
-                {{ form.author.errors }}
-                {{ form.author }}{{ form.author.label_tag }}
+        <div class="col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10">
+            <div class="form-group">
+                {{ form }}
+    {#            {{ form.author|label_with_classes:"class1 class2" }}#}
             </div>
-            <div class="input-field col l6 m6 s12">
-                {{ form.composer.errors }}
-                {{ form.composer }}{{ form.composer.label_tag }}
+            <div class="form-group text-center">
+                <input type="submit" value="Submit" class="btn btn-success"/>
             </div>
         </div>
+{#            {{ form.author.errors }}#}
+{#            {{ form.author }}{{ form.author.label_tag }}#}
+{#            {{ form.composer.errors }}#}
+{#            {{ form.composer }}{{ form.composer.label_tag }}#}
+{#            {{ form.translator.errors }}#}
+{#            {{ form.translator }}{{ form.translator.label_tag }}#}
+{#            {{ form.year.errors }}#}
+{#            {{ form.year }}#}
+{#            {{ form.year.label_tag }}#}
 
-        <div class="row">
-            <div class="input-field col l6 m6 s12">
-                {{ form.translator.errors }}
-                {{ form.translator }}{{ form.translator.label_tag }}
-            </div>
-            <div class="input-field col l6 m6 s12">
-                {{ form.year.errors }}
-                {{ form.year }}
-                {{ form.year.label_tag }}
-            </div>
-        </div>
-        <div class="input-field col l12 m12 s12 center">
-            <input type="submit" value="Submit" class="btn"/>
-        </div>
 
     </form>
 {% endblock %}

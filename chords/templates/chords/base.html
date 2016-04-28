@@ -14,7 +14,7 @@
 </head>
 <body>
     <div class="container">
-        <nav class="navbar navbar-default">
+        <nav class="navbar navbar-default" role="navigation">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar_collapse" aria-expanded="false">
@@ -51,12 +51,8 @@
             </div>
         </nav>
 
-        <div class="section">
-            <div class="row">
-                <div class="col l8 offset-l2 m9 offset-m1 s12">
-                    {% block content %}{% endblock %}
-                </div>
-            </div>
+        <div>
+            {% block content %}{% endblock %}
         </div>
 
     </div>
@@ -65,12 +61,12 @@
     <!--  Scripts-->
     <script>
         // https://github.com/jquery-textfill/jquery-textfill
-        $(document).ready(function() {
-            $('.song_body').textfill({
-                widthOnly: true,
-                maxFontPixels: 60,
-                innerTag: 'span'
-            });
-        });
+{#        $(document).ready(function() {#}
+{#            $('.song_body').textfill({#}
+{#                widthOnly: true,#}
+{#                maxFontPixels: 60,#}
+{#                innerTag: 'span'#}
+{#            });#}
+{#        });#}
     </script>
 </html>
