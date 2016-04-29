@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-29 15:16+0300\n"
-"PO-Revision-Date: 2016-04-29 15:17+0300\n"
+"POT-Creation-Date: 2016-04-29 15:25+0300\n"
+"PO-Revision-Date: 2016-04-29 15:26+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -25,9 +25,46 @@ msgstr ""
 msgid "%(value)s year is in the future"
 msgstr "%(value)s год еще не наступил"
 
+#: chords/models.py:23 chords/models.py:45 chords/models.py:58
+msgid "Title"
+msgstr "Название"
+
+#: chords/models.py:24
+msgid "Content"
+msgstr "Содержание"
+
+#: chords/models.py:28 chords/templates/chords/base.html.py:36
+msgid "Tags"
+msgstr "Метки"
+
+#: chords/models.py:29 chords/templates/chords/base.html.py:34
+#: chords/templates/chords/playlist_list.html:6
+msgid "Playlists"
+msgstr "Плейлисты"
+
 #: chords/models.py:31
-msgid "public"
-msgstr "открыто"
+msgid "Public"
+msgstr "Открыто"
+
+#: chords/models.py:32
+msgid "Approved"
+msgstr "Подтверждено"
+
+#: chords/models.py:67
+msgid "Author"
+msgstr "Автор"
+
+#: chords/models.py:68
+msgid "Composer"
+msgstr "Композитор"
+
+#: chords/models.py:69
+msgid "Translator"
+msgstr "Переводчик"
+
+#: chords/models.py:70
+msgid "Year"
+msgstr "Год"
 
 #: chords/templates/chords/base.html:32
 msgid "Published"
@@ -36,15 +73,6 @@ msgstr "Опубликовано"
 #: chords/templates/chords/base.html:33
 msgid "Songs"
 msgstr "Песни"
-
-#: chords/templates/chords/base.html:34
-#: chords/templates/chords/playlist_list.html:6
-msgid "Playlists"
-msgstr "Плейлисты"
-
-#: chords/templates/chords/base.html:36
-msgid "Tags"
-msgstr "Метки"
 
 #: chords/templates/chords/base.html:41
 #: chords/templates/chords/song_detail.html:47

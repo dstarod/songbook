@@ -20,16 +20,16 @@ def validate_year(y):
 
 
 class Song(models.Model):
-    title = models.CharField("song's title", null=False, max_length=100)
-    body = models.TextField("song's text", null=False, default='')
+    title = models.CharField(null=False, max_length=100, verbose_name=_('Title'))
+    body = models.TextField(null=False, default='', verbose_name=_('Content'))
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True, editable=False)
     user = models.ForeignKey(AUTH_USER_MODEL, editable=False, related_name='songs')
-    tags = models.ManyToManyField('Tag', blank=True, related_name="songs")
-    playlists = models.ManyToManyField('Playlist', related_name='songs', blank=True)
+    tags = models.ManyToManyField('Tag', blank=True, related_name="songs", verbose_name=_('Tags'))
+    playlists = models.ManyToManyField('Playlist', related_name='songs', blank=True, verbose_name=_('Playlists'))
 
-    public = models.BooleanField(default=False, null=False, verbose_name=_('public'))
-    approved = models.BooleanField('approved', default=False, null=False)
+    public = models.BooleanField(default=False, null=False, verbose_name=_('Public'))
+    approved = models.BooleanField(default=False, null=False, verbose_name=_('Approved'))
 
     class Meta:
         ordering = ['title']
@@ -42,7 +42,7 @@ class Song(models.Model):
 
 
 class Tag(models.Model):
-    title = models.CharField("Song's tag", max_length=100)
+    title = models.CharField(max_length=100, verbose_name=_('Title'))
     user = models.ForeignKey(AUTH_USER_MODEL, editable=False)
 
     def __str__(self):
@@ -51,12 +51,11 @@ class Tag(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(AUTH_USER_MODEL, related_name='profile')
-    # image = models.ImageField(upload_to='avatars')
     image = ResizedImageField(upload_to='avatars')
 
 
 class Playlist(models.Model):
-    title = models.CharField(max_length=256, null=False, blank=False)
+    title = models.CharField(max_length=256, null=False, blank=False, verbose_name=_('Title'))
     user = models.ForeignKey(AUTH_USER_MODEL, related_name='playlists')
 
     def __str__(self):
@@ -65,10 +64,10 @@ class Playlist(models.Model):
 
 class SongProfile(models.Model):
     song = models.OneToOneField(Song, related_name='profile')
-    author = models.CharField(max_length=256, null=False)
-    composer = models.CharField(max_length=256, null=False)
-    translator = models.CharField(max_length=256, blank=True, null=True)
-    year = models.PositiveSmallIntegerField(validators=[validate_year], blank=True, null=True)
+    author = models.CharField(max_length=256, null=False, verbose_name=_('Author'))
+    composer = models.CharField(max_length=256, null=False, verbose_name=_('Composer'))
+    translator = models.CharField(max_length=256, blank=True, null=True, verbose_name=_('Translator'))
+    year = models.PositiveSmallIntegerField(validators=[validate_year], blank=True, null=True, verbose_name=_('Year'))
 
     def __str__(self):
         return self.author

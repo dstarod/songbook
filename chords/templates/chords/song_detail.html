@@ -6,9 +6,9 @@
 
     {% if song.profile %}
         <div class="text-center">
-            Author: {{ song.profile.author }}. Composer: {{ song.profile.composer }}.
+            {% trans 'Author' %}: {{ song.profile.author }}. {% trans 'Composer' %}: {{ song.profile.composer }}.
             {% if song.profile.translator %}
-                Translator: {{ song.profile.translator }}.
+                {% trans 'Translator' %}: {{ song.profile.translator }}.
             {% endif %}
             {% if song.profile.year %}
                 {{ song.profile.year }}.
