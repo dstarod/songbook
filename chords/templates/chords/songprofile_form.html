@@ -1,8 +1,6 @@
 {% extends 'chords/song.html' %}
 {% load i18n %}
 
-{% load chord_extras %}
-
 {% block content %}
     <form method="post" class="form">
         {% csrf_token %}
@@ -10,22 +8,11 @@
         <div class="col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10">
             <div class="form-group">
                 {{ form }}
-    {#            {{ form.author|label_with_classes:"class1 class2" }}#}
             </div>
             <div class="form-group text-center">
                 <input type="submit" value="{% trans 'Submit' %}" class="btn btn-success"/>
             </div>
         </div>
-{#            {{ form.author.errors }}#}
-{#            {{ form.author }}{{ form.author.label_tag }}#}
-{#            {{ form.composer.errors }}#}
-{#            {{ form.composer }}{{ form.composer.label_tag }}#}
-{#            {{ form.translator.errors }}#}
-{#            {{ form.translator }}{{ form.translator.label_tag }}#}
-{#            {{ form.year.errors }}#}
-{#            {{ form.year }}#}
-{#            {{ form.year.label_tag }}#}
-
 
     </form>
 {% endblock %}
