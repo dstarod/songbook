@@ -22,9 +22,9 @@ def validate_year(y):
 class Song(models.Model):
     title = models.CharField(null=False, max_length=100, verbose_name=_('Title'))
     body = models.TextField(null=False, default='', verbose_name=_('Content'))
-    created_at = models.DateTimeField(auto_now_add=True, editable=False)
-    updated_at = models.DateTimeField(auto_now=True, editable=False)
-    user = models.ForeignKey(AUTH_USER_MODEL, editable=False, related_name='songs')
+    created_at = models.DateTimeField(auto_now_add=True, editable=False, verbose_name=_('Created at'))
+    updated_at = models.DateTimeField(auto_now=True, editable=False, verbose_name=_('Updated at'))
+    user = models.ForeignKey(AUTH_USER_MODEL, editable=False, related_name='songs', verbose_name=_('User'))
     tags = models.ManyToManyField('Tag', blank=True, related_name="songs", verbose_name=_('Tags'))
     playlists = models.ManyToManyField('Playlist', related_name='songs', blank=True, verbose_name=_('Playlists'))
 
@@ -52,6 +52,9 @@ class Tag(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(AUTH_USER_MODEL, related_name='profile')
     image = ResizedImageField(upload_to='avatars')
+
+    def __str__(self):
+        return self.user
 
 
 class Playlist(models.Model):
