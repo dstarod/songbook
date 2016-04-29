@@ -1,5 +1,6 @@
 from django import forms
 from .models import Song, Tag, SongProfile, Playlist
+from django.utils.translation import ugettext_lazy as _
 
 
 class LoginForm(forms.Form):

@@ -1,4 +1,5 @@
 {% extends 'chords/song.html' %}
+{% load i18n %}
 
 {% block content %}
     <form action="" method="post" class="form">
@@ -9,7 +10,7 @@
                 {{ form|bootstrap }}
             </div>
             <div class="form-group text-center">
-                <input type="submit" value="Submit" class="btn btn-success"/>
+                <input type="submit" value="{% trans 'Submit' %}" class="btn btn-success"/>
             </div>
         </div>
 

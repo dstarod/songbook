@@ -1,16 +1,35 @@
 {% extends 'chords/base.html' %}
+{% load i18n %}
+
 {% block content %}
 
     <div class="col-md-offset-2 col-md-8">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h2 class="panel-title">{{ user.username|title }}'s profile</h2>
+                <h2 class="panel-title">{{ user.username|title }} ({{ user.email }})</h2>
             </div>
             <div class="panel-body">
-                {% if user.profile.image %}
-                    <img width="100" class="circle responsive-img" src="{{ user.profile.image.url }}" alt="">
-                {% endif %}
-                Email: {{ user.email }}
+{#                {% if user.profile.image %}#}
+{#                    <img width="100" class="circle responsive-img" src="{{ user.profile.image.url }}" alt="">#}
+{#                {% endif %}#}
+
+                <h2 class="text-center">{% trans 'Change your locale' %}</h2>
+
+                <form action="/i18n/setlang/" method="POST" class="form">
+                    {% csrf_token %}
+                    <div class="text-center">
+                        <input name="next" type="hidden" value="/accounts/profile/" />
+                        <div class="form-group">
+                            <div class="btn-group" role="group" aria-label="...">
+                                {% get_available_languages as LANGUAGES %}
+                                {% get_current_language as LANGUAGE_CODE %}
+                                {% for lang in LANGUAGES %}
+                                    <button name="language" type="submit" value="{{ lang.0 }}" class="btn btn-default {% if lang.0 == LANGUAGE_CODE %}active{% endif %}">{{ lang.1 }}</button>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

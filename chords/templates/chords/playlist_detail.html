@@ -1,4 +1,5 @@
 {% extends 'chords/playlist.html' %}
+{% load i18n %}
 
 {% block content %}
 
@@ -17,8 +18,8 @@
     {% if playlist.user == user %}
         <div class="text-center">
             <div class="btn-group" role="group" aria-label="...">
-                <a href="{% url 'songs:playlist_edit' pk=playlist.id %}" class="btn btn-default">Edit</a>
-                <a href="{% url 'songs:playlist_delete' pk=playlist.id %}" class="btn btn-default">Delete</a>
+                <a href="{% url 'songs:playlist_edit' pk=playlist.id %}" class="btn btn-default">{% trans 'Edit' %}</a>
+                <a href="{% url 'songs:playlist_delete' pk=playlist.id %}" class="btn btn-default">{% trans 'Delete' %}</a>
             </div>
         </div>
     {% endif %}

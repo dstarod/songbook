@@ -1,4 +1,5 @@
 {% extends 'chords/song.html' %}
+{% load i18n %}
 
 {% block content %}
     <h2 class="text-center">{{ song.title }}</h2>
@@ -41,13 +42,13 @@
         <br>
         <div class="text-center">
             <div class="btn-group" role="group" aria-label="...">
-                <a href="{% url 'songs:song_edit' pk=song.id %}" class="btn btn-default">Edit</a>
+                <a href="{% url 'songs:song_edit' pk=song.id %}" class="btn btn-default">{% trans 'Edit' %}</a>
                 {% if song.profile %}
-                    <a href="{% url 'songs:song_profile_edit' pk=song.profile.id %}" class="btn btn-default">Profile</a>
+                    <a href="{% url 'songs:song_profile_edit' pk=song.profile.id %}" class="btn btn-default">{% trans 'Profile' %}</a>
                 {% else %}
-                    <a href="{% url 'songs:song_profile_create' pk=song.id %}" class="btn btn-default">Profile</a>
+                    <a href="{% url 'songs:song_profile_create' pk=song.id %}" class="btn btn-default">{% trans 'Profile' %}</a>
                 {% endif %}
-                <a href="{% url 'songs:song_delete' pk=song.id %}" class="btn btn-default">Delete</a>
+                <a href="{% url 'songs:song_delete' pk=song.id %}" class="btn btn-default">{% trans 'Delete' %}</a>
             </div>
         </div>
     {% endif %}

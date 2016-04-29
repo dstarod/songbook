@@ -1,0 +1,106 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-04-29 14:36+0300\n"
+"PO-Revision-Date: 2016-04-29 14:37+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+"X-Generator: Poedit 1.8.7\n"
+
+#: chords/models.py:17
+#, python-format
+msgid "%(value)s year is in the future"
+msgstr "%(value)s год еще не наступил"
+
+#: chords/models.py:31
+msgid "public"
+msgstr "открыто"
+
+#: chords/templates/chords/base.html:32
+msgid "Published"
+msgstr "Опубликовано"
+
+#: chords/templates/chords/base.html:33
+msgid "Songs"
+msgstr "Песни"
+
+#: chords/templates/chords/base.html:34
+#: chords/templates/chords/playlist_list.html:6
+msgid "Playlists"
+msgstr "Плейлисты"
+
+#: chords/templates/chords/base.html:36
+msgid "Tags"
+msgstr "Метки"
+
+#: chords/templates/chords/base.html:41
+#: chords/templates/chords/song_detail.html:47
+#: chords/templates/chords/song_detail.html:49
+msgid "Profile"
+msgstr "Профиль"
+
+#: chords/templates/chords/base.html:42
+msgid "Logout"
+msgstr "Выход"
+
+#: chords/templates/chords/base.html:44
+msgid "Login"
+msgstr "Войти"
+
+#: chords/templates/chords/base.html:45
+msgid "Register"
+msgstr "Регистрация"
+
+#: chords/templates/chords/playlist_detail.html:21
+#: chords/templates/chords/song_detail.html:45
+#: chords/templates/chords/tag_detail.html:17
+msgid "Edit"
+msgstr "Редактировать"
+
+#: chords/templates/chords/playlist_detail.html:22
+#: chords/templates/chords/song_detail.html:51
+#: chords/templates/chords/tag_detail.html:18
+msgid "Delete"
+msgstr "Удалить"
+
+#: chords/templates/chords/playlist_form.html:16
+#: chords/templates/chords/song_form.html:13
+#: chords/templates/chords/songprofile_form.html:16
+#: chords/templates/chords/tag_form.html:17
+msgid "Submit"
+msgstr "Подтвердить"
+
+#: chords/templates/chords/playlist_list.html:20
+#: chords/templates/chords/song_list.html:37
+#: chords/templates/chords/tag_list.html:19
+msgid "Create new one"
+msgstr "Добавить"
+
+#: chords/templates/chords/published_list.html:5
+msgid "Published song list"
+msgstr "Опубликованные песни"
+
+#: chords/templates/chords/song_list.html:5
+msgid "Song list"
+msgstr "Список песен"
+
+#: chords/templates/chords/tag_list.html:6
+msgid "Tag list"
+msgstr "Список меток"
+
+#: chords/templates/registration/profile.html:16
+msgid "Change your locale"
+msgstr "Сменить язык"

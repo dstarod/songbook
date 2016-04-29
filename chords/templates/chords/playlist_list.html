@@ -1,8 +1,9 @@
 {% extends 'chords/playlist.html' %}
+{% load i18n %}
 
 {% block content %}
 
-    <h2 class="text-center">Playlists</h2>
+    <h2 class="text-center">{% trans 'Playlists' %}</h2>
 
     <div class="row">
         <div class="list-group col-md-offset-2 col-md-8">
@@ -16,7 +17,7 @@
 
     {% if user.is_authenticated %}
         <div class="text-center">
-            <a class="btn btn-success" href="{% url 'songs:playlist_create' %}">Create new one</a>
+            <a class="btn btn-success" href="{% url 'songs:playlist_create' %}">{% trans 'Create new one' %}</a>
         </div>
     {% endif %}
 

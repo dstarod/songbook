@@ -28,7 +28,7 @@ class Song(models.Model):
     tags = models.ManyToManyField('Tag', blank=True, related_name="songs")
     playlists = models.ManyToManyField('Playlist', related_name='songs', blank=True)
 
-    public = models.BooleanField('public', default=False, null=False)
+    public = models.BooleanField(default=False, null=False, verbose_name=_('public'))
     approved = models.BooleanField('approved', default=False, null=False)
 
     class Meta:

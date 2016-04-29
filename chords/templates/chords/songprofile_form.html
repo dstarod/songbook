@@ -1,4 +1,5 @@
 {% extends 'chords/song.html' %}
+{% load i18n %}
 
 {% load chord_extras %}
 
@@ -12,7 +13,7 @@
     {#            {{ form.author|label_with_classes:"class1 class2" }}#}
             </div>
             <div class="form-group text-center">
-                <input type="submit" value="Submit" class="btn btn-success"/>
+                <input type="submit" value="{% trans 'Submit' %}" class="btn btn-success"/>
             </div>
         </div>
 {#            {{ form.author.errors }}#}

@@ -1,3 +1,4 @@
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,20 +29,20 @@
 
                 <div class="collapse navbar-collapse" id="navbar_collapse">
                     <ul class="nav navbar-nav">
-                        <li class="{% if request.path == '/' %}active{% endif %}"><a href="{% url 'songs:index' %}">Published</a></li>
-                        <li class="{% block songs_nav %}{% endblock %}"><a href="{% url 'songs:song_list' %}">Songs</a></li>
-                        <li class="{% block playlist_nav %}{% endblock %}"><a href="{% url 'songs:playlist_list' %}">Playlists</a></li>
+                        <li class="{% if request.path == '/' %}active{% endif %}"><a href="{% url 'songs:index' %}">{% trans 'Published' %}</a></li>
+                        <li class="{% block songs_nav %}{% endblock %}"><a href="{% url 'songs:song_list' %}">{% trans 'Songs' %}</a></li>
+                        <li class="{% block playlist_nav %}{% endblock %}"><a href="{% url 'songs:playlist_list' %}">{% trans 'Playlists' %}</a></li>
                         {% if user.is_authenticated %}
-                            <li class="{% block tags_nav %}{% endblock %}"><a href="{% url 'songs:tag_list' %}">Tags</a></li>
+                            <li class="{% block tags_nav %}{% endblock %}"><a href="{% url 'songs:tag_list' %}">{% trans 'Tags' %}</a></li>
                         {% endif %}
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         {% if user.is_authenticated %}
-                            <li><a href="/accounts/profile/">Profile</a></li>
-                            <li><a href="/accounts/logout/">{{ user }} / Logout</a></li>
+                            <li><a href="/accounts/profile/">{% trans 'Profile' %}</a></li>
+                            <li><a href="/accounts/logout/">{{ user }} / {% trans 'Logout' %}</a></li>
                         {% else %}
-                            <li><a href="/accounts/login/">Login</a></li>
-                            <li><a href="/accounts/register/">Register</a></li>
+                            <li><a href="/accounts/login/">{% trans 'Login' %}</a></li>
+                            <li><a href="/accounts/register/">{% trans 'Register' %}</a></li>
                         {% endif %}
                         {% if user.is_superuser %}
                             <li><a href="/admin/"><span class="glyphicon glyphicon-eye-open"></span></a></li>
