@@ -38,7 +38,7 @@
             {% autoescape off %}
                 <p class="song_body song_show"><span>{{ song.body_nbsp|linebreaksbr }}</span></p>
             {% endautoescape %}
-            {% if song.body != '' %}
+            {% if song.pdf and song.body != '' %}
                 <a href="{{ song.pdf.url }}" target="_blank" class="label label-info">PDF</a>
             {% endif %}
         </div>
