@@ -1,14 +1,14 @@
 {% extends 'chords/song.html' %}
+{% load i18n %}
 
 {% block content %}
-    <h5 class="center">Delete song "{{ song.title }}"</h5>
     <form method="post">
        {% csrf_token %}
-        <div class="input-field center-align">
-            <button class="btn waves-effect waves-light" type="submit" name="action">
-                <i class="material-icons small left">done</i>I am sure
+        <div class="text-center">
+            <h2 class="center">{% trans 'Delete song' %} "{{ song.title }}"</h2>
+            <button class="btn btn-danger" type="submit" name="action">
+                I am sure
             </button>
-            <br><br>
         </div>
     </form>
 {% endblock %}

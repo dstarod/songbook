@@ -1,13 +1,12 @@
 {% extends 'chords/playlist.html' %}
+{% load i18n %}
 
 {% block content %}
-    <h2 class="text-center">Delete playlist "{{ playlist.title }}"</h2>
     <form method="post" class="form">
        {% csrf_token %}
-        <div class="col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10">
-            <div class="form-group text-center">
-                <input type="submit" class="btn btn-danger" name="action" value="I am sure">
-            </div>
+        <div class="form-group text-center">
+            <h2>{% trans 'Delete playlist' %} "{{ playlist.title }}"</h2>
+            <input type="submit" class="btn btn-danger" name="action" value="I am sure">
         </div>
     </form>
 {% endblock %}
