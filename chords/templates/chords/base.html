@@ -11,7 +11,7 @@
     <link href="{% static 'chords/css/style.css' %}" type="text/css" rel="stylesheet" />
     <script src="{% static 'chords/js/jquery-2.2.3.min.js' %}"></script>
     <script src="{% static 'chords/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'chords/js/jquery.textfill.min.js' %}"></script>
+    {% block head %}{% endblock %}
 </head>
 <body>
     <div class="container">
@@ -59,15 +59,4 @@
     </div>
 
 </body>
-    <!--  Scripts-->
-    <script>
-        // https://github.com/jquery-textfill/jquery-textfill
-{#        $(document).ready(function() {#}
-{#            $('.song_body').textfill({#}
-{#                widthOnly: true,#}
-{#                maxFontPixels: 60,#}
-{#                innerTag: 'span'#}
-{#            });#}
-{#        });#}
-    </script>
 </html>

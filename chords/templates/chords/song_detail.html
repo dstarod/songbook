@@ -1,6 +1,21 @@
 {% extends 'chords/song.html' %}
 {% load i18n %}
 
+{% block head %}
+    {% load staticfiles %}
+    <script src="{% static 'chords/js/jquery.textfill.min.js' %}"></script>
+    <script>
+        // https://github.com/jquery-textfill/jquery-textfill
+        $(document).ready(function() {
+            $('.song_body').textfill({
+                widthOnly: true,
+                maxFontPixels: 28,
+                innerTag: 'span'
+            });
+        });
+    </script>
+{% endblock %}
+
 {% block content %}
     <h2 class="text-center">{{ song.title }}</h2>
 
@@ -23,7 +38,15 @@
             {% autoescape off %}
                 <p class="song_body song_show"><span>{{ song.body_nbsp|linebreaksbr }}</span></p>
             {% endautoescape %}
+            {% if song.body != '' %}
+                <a href="{{ song.pdf.url }}" target="_blank" class="label label-info">PDF</a>
+            {% endif %}
         </div>
+
+        {% if song.pdf and song.body == '' %}
+            <iframe id=pdf_view width="100%" src="{{ song.pdf.url }}" frameborder="0"></iframe>
+        {% endif %}
+
     </div>
 
     <div class="text-center">

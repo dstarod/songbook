@@ -31,7 +31,7 @@ class SongModelForm(forms.ModelForm):
 
     class Meta:
         model = Song
-        fields = ['title', 'body', 'tags', 'playlists', 'public']
+        fields = ['title', 'body', 'tags', 'playlists', 'public', 'pdf']
         widgets = {
             'title': forms.TextInput(attrs={
                 'placeholder': 'Song title'
