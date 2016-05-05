@@ -47,11 +47,11 @@ class Song(models.Model):
     updated_at = models.DateTimeField(auto_now=True, editable=False, verbose_name=_('Updated at'))
     user = models.ForeignKey(AUTH_USER_MODEL, editable=False, related_name='songs', verbose_name=_('User'))
     tags = models.ManyToManyField('Tag', blank=True, related_name="songs", verbose_name=_('Tags'))
-    playlists = models.ManyToManyField('Playlist', related_name='songs', blank=True, verbose_name=_('Playlists'))
+    sets = models.ManyToManyField('Playlist', related_name='songs', blank=True, verbose_name=_('Sets'))
     public = models.BooleanField(default=False, null=False, verbose_name=_('Public'))
     approved = models.BooleanField(default=False, null=False, verbose_name=_('Approved'))
 
-    pdf = models.FileField(upload_to=user_directory_path, verbose_name='PDF', validators=[validate_pdf], null=True)
+    pdf = models.FileField(upload_to=user_directory_path, verbose_name='PDF', validators=[validate_pdf], null=True, blank=True)
 
     class Meta:
         ordering = ['title']
@@ -79,7 +79,7 @@ class Profile(models.Model):
 
 class Playlist(models.Model):
     title = models.CharField(max_length=256, null=False, blank=False, verbose_name=_('Title'))
-    user = models.ForeignKey(AUTH_USER_MODEL, related_name='playlists')
+    user = models.ForeignKey(AUTH_USER_MODEL, related_name='sets')
 
     def __str__(self):
         return self.title
@@ -100,6 +100,8 @@ class SongProfile(models.Model):
 # python3 manage.py migrate
 # python3 manage.py sqlmigrate chords 0001
 # python3 manage.py check
+# django-admin makemessages -l ru
+# django-admin compilemessages
 
 # TODO: Users group. Email to users.
 # TODO: Playlist. Shared to user/group for read only / edit.

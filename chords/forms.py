@@ -27,11 +27,11 @@ class SongModelForm(forms.ModelForm):
         super(SongModelForm, self).__init__(*args, **kwargs)
         user = kwargs.get('initial', {}).get('user', None)
         self.fields['tags'].queryset = Tag.objects.filter(user=user)
-        self.fields['playlists'].queryset = Playlist.objects.filter(user=user)
+        self.fields['sets'].queryset = Playlist.objects.filter(user=user)
 
     class Meta:
         model = Song
-        fields = ['title', 'body', 'tags', 'playlists', 'public', 'pdf']
+        fields = ['title', 'body', 'tags', 'sets', 'public', 'pdf']
         widgets = {
             'title': forms.TextInput(attrs={
                 'placeholder': 'Song title'
@@ -40,5 +40,5 @@ class SongModelForm(forms.ModelForm):
                 'class': 'song_body'
             }),
             'tags': forms.CheckboxSelectMultiple(),
-            'playlists': forms.CheckboxSelectMultiple(),
+            'sets': forms.CheckboxSelectMultiple(),
         }

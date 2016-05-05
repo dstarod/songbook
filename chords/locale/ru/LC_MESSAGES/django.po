@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-04 15:14+0300\n"
-"PO-Revision-Date: 2016-05-04 15:14+0300\n"
+"POT-Creation-Date: 2016-05-05 11:35+0300\n"
+"PO-Revision-Date: 2016-05-05 11:35+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -30,7 +30,7 @@ msgstr "%(value)s год еще не наступил"
 msgid "%(value)s file is not PDF"
 msgstr "Файл \"%(value)s\" не является  PDF-документом"
 
-#: chords/models.py:44 chords/models.py:67 chords/models.py:80
+#: chords/models.py:44 chords/models.py:67 chords/models.py:81
 msgid "Title"
 msgstr "Название"
 
@@ -56,8 +56,8 @@ msgstr "Метки"
 
 #: chords/models.py:50 chords/templates/chords/base.html.py:34
 #: chords/templates/chords/playlist_list.html:6
-msgid "Playlists"
-msgstr "Плейлисты"
+msgid "Sets"
+msgstr "Списки"
 
 #: chords/models.py:51
 msgid "Public"
@@ -67,19 +67,19 @@ msgstr "Открыто"
 msgid "Approved"
 msgstr "Подтверждено"
 
-#: chords/models.py:89 chords/templates/chords/song_detail.html.py:24
+#: chords/models.py:90 chords/templates/chords/song_detail.html.py:24
 msgid "Author"
 msgstr "Автор"
 
-#: chords/models.py:90 chords/templates/chords/song_detail.html.py:24
+#: chords/models.py:91 chords/templates/chords/song_detail.html.py:24
 msgid "Composer"
 msgstr "Композитор"
 
-#: chords/models.py:91 chords/templates/chords/song_detail.html.py:26
+#: chords/models.py:92 chords/templates/chords/song_detail.html.py:26
 msgid "Translator"
 msgstr "Переводчик"
 
-#: chords/models.py:92
+#: chords/models.py:93
 msgid "Year"
 msgstr "Год"
 
@@ -109,13 +109,14 @@ msgstr "Войти"
 msgid "Register"
 msgstr "Регистрация"
 
-#: chords/templates/chords/playlist_delete.html:4
-msgid "Delete playlist"
-msgstr "Удалить плейлист"
+#: chords/templates/chords/playlist_delete.html:8
+msgid "Delete set"
+msgstr "Удалить список"
 
 #: chords/templates/chords/playlist_detail.html:6
-msgid "Playlist"
-msgstr "Плейлист"
+#: chords/templates/chords/playlist_form.html:6
+msgid "Set"
+msgstr "Список"
 
 #: chords/templates/chords/playlist_detail.html:21
 #: chords/templates/chords/song_detail.html:68
@@ -146,7 +147,7 @@ msgstr "Добавить"
 msgid "Published song list"
 msgstr "Опубликованные песни"
 
-#: chords/templates/chords/song_delete.html:4
+#: chords/templates/chords/song_delete.html:8
 msgid "Delete song"
 msgstr "Удалить песню"
 
@@ -154,7 +155,7 @@ msgstr "Удалить песню"
 msgid "Song list"
 msgstr "Список песен"
 
-#: chords/templates/chords/tag_delete.html:4
+#: chords/templates/chords/tag_delete.html:8
 msgid "Delete tag"
 msgstr "Удалить метку"
 
@@ -169,3 +170,12 @@ msgstr "Список меток"
 #: chords/templates/registration/profile.html:16
 msgid "Change your locale"
 msgstr "Сменить язык"
+
+#~ msgid "Playlists"
+#~ msgstr "Списки"
+
+#~ msgid "Delete playlist"
+#~ msgstr "Удалить плейлист"
+
+#~ msgid "Playlist"
+#~ msgstr "Список"

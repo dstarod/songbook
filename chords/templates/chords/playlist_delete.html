@@ -5,7 +5,7 @@
     <form method="post" class="form">
        {% csrf_token %}
         <div class="form-group text-center">
-            <h2>{% trans 'Delete playlist' %} "{{ playlist.title }}"</h2>
+            <h2>{% trans 'Delete set' %} "{{ playlist.title }}"</h2>
             <input type="submit" class="btn btn-danger" name="action" value="I am sure">
         </div>
     </form>

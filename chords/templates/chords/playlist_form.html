@@ -3,7 +3,7 @@
 
 {% block content %}
     {% if form.title %}
-        <h2 class="text-center">Playlist "{{ form.title.value }}"</h2>
+        <h2 class="text-center">{% trans 'Set' %} "{{ form.title.value }}"</h2>
     {% endif %}
     <form method="post" class="form">
         {% csrf_token %}

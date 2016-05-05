@@ -55,7 +55,7 @@
             {% for tag in song.tags.all %}
                 <a class="label label-info" href="{% url 'songs:tag' pk=tag.id %}">{{ tag }}</a>
             {% endfor %}
-            {% for playlist in song.playlists.all %}
+            {% for playlist in song.sets.all %}
                 <a class="label label-primary" href="{% url 'songs:playlist' pk=playlist.id %}">{{ playlist }}</a>
             {% endfor %}
         {% endif %}
