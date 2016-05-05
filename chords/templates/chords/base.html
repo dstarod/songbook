@@ -38,8 +38,8 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         {% if user.is_authenticated %}
-                            <li><a href="/accounts/profile/">{% trans 'Profile' %}</a></li>
-                            <li><a href="/accounts/logout/">{{ user }} / {% trans 'Logout' %}</a></li>
+                            <li><a href="/accounts/profile/">{{ user }}</a></li>
+                            <li><a href="/accounts/logout/">{% trans 'Logout' %}</a></li>
                         {% else %}
                             <li><a href="/accounts/login/">{% trans 'Login' %}</a></li>
                             <li><a href="/accounts/register/">{% trans 'Register' %}</a></li>
