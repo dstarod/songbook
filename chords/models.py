@@ -73,7 +73,8 @@ class Tag(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(AUTH_USER_MODEL, related_name='profile')
-    image = ResizedImageField(upload_to='avatars')
+    # image = ResizedImageField(upload_to='avatars')
+    # pagesize = models.SmallIntegerField(null=False, blank=False, default=10, verbose_name=_('Page size'))
 
 
 class Playlist(models.Model):

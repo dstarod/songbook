@@ -55,7 +55,7 @@ class PlaylistDelete(generic.DeleteView):
 class SongsList(generic.ListView):
     context_object_name = 'songs'
     # https://docs.djangoproject.com/en/1.9/topics/pagination/
-    paginate_by = 10
+    paginate_by = 16
 
     def get_queryset(self):
         # Only users songs or public
@@ -65,7 +65,7 @@ class SongsList(generic.ListView):
 
 class SongsListPublic(generic.ListView):
     context_object_name = 'songs'
-    paginate_by = 10
+    paginate_by = 16
     template_name = 'chords/published_list.html'
 
     def get_queryset(self):
