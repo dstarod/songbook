@@ -7,7 +7,8 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 from datetime import datetime
 import os
-# from django.core.validators import
+import re
+
 
 AUTH_USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
 
@@ -60,7 +61,10 @@ class Song(models.Model):
         return self.title
 
     def body_nbsp(self):
-        return self.body.replace(' ', '&nbsp;')
+        chords_re = re.compile(r'([A-H])(#|##|b|bb)?(m|maj|min|mi|is)?(\d)?(\s|$|/|&)')
+        body = self.body.replace(' ', '&nbsp;')
+        body = re.sub(chords_re, r'<span class="chord">\1\2\3\4</span>\5', body)
+        return body
 
 
 class Tag(models.Model):
