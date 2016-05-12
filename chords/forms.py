@@ -42,3 +42,7 @@ class SongModelForm(forms.ModelForm):
             'tags': forms.CheckboxSelectMultiple(),
             'sets': forms.CheckboxSelectMultiple(),
         }
+
+    def clean_body(self):
+        # Exclude song body from total cleaning
+        return str(self.data.get('body'))
