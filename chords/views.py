@@ -199,3 +199,13 @@ def profile(request):
         request, template_name='registration/profile.html',
         context={}
     )
+
+
+def copy_song(request, pk):
+    song = Song.objects.get(pk=pk)
+    song.id = None
+    song.user = request.user
+    song.public = False
+    song.approved = False
+    song.save()
+    return redirect(reverse_lazy('songs:song_list'))

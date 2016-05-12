@@ -74,6 +74,13 @@
                 <a href="{% url 'songs:song_delete' pk=song.id %}" class="btn btn-default">{% trans 'Delete' %}</a>
             </div>
         </div>
+    {% elif user.is_authenticated %}
+        <br>
+        <div class="text-center">
+            <a href="{% url 'songs:song_copy' pk=song.id %}" class="btn btn-default">{% trans 'Copy' %}</a>
+        </div>
     {% endif %}
+
+
 
 {% endblock %}
