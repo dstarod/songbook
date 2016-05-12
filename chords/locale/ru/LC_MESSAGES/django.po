@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-12 16:12+0300\n"
-"PO-Revision-Date: 2016-05-12 16:13+0300\n"
+"POT-Creation-Date: 2016-05-12 16:16+0300\n"
+"PO-Revision-Date: 2016-05-12 16:16+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -106,6 +106,12 @@ msgstr "Регистрация"
 #: chords/templates/chords/playlist_delete.html:8
 msgid "Delete set"
 msgstr "Удалить список"
+
+#: chords/templates/chords/playlist_delete.html:9
+#: chords/templates/chords/song_delete.html:10
+#: chords/templates/chords/tag_delete.html:9
+msgid "I am sure"
+msgstr "Подтвердить"
 
 #: chords/templates/chords/playlist_detail.html:6
 #: chords/templates/chords/playlist_form.html:6
