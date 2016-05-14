@@ -1,1 +1,3 @@
-Activation link
+{% load i18n %}
+
+{% trans 'Activation link' %}

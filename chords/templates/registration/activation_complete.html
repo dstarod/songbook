@@ -1,5 +1,6 @@
 {% extends 'chords/base.html' %}
+{% load i18n %}
 
 {% block content %}
-    Activation complete! Now you can <a href="/accounts/login/">login</a>.
+    {% trans 'Activation complete! Now you can <a href="/accounts/login/">login</a>' %}.
 {% endblock %}

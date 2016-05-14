@@ -1,3 +1,5 @@
-For activate your account please visit
+{% load i18n %}
+
+{% trans 'For activate your account please visit' %}
 http://{{ site }}/accounts/activate/{{ activation_key }}
-during {{ expiration_days }} day(s).
+{% trans 'during' %} {{ expiration_days }} {% trans 'days' %}.

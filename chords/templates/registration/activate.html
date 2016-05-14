@@ -1,3 +1,4 @@
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +6,7 @@
     <title>Title</title>
 </head>
 <body>
-    Activation fails. Please retry.
+    {% trans 'Activation fails. Please retry.' %}
     {# {{ activation_key }}  #}
 </body>
 </html>

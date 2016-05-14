@@ -154,4 +154,11 @@ EMAIL_TIMEOUT = 20
 # EMAIL_SSL_KEYFILE =
 # EMAIL_SSL_CERTFILE =
 
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+# EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+# EMAIL_FILE_PATH = '/tmp/app-messages' # change this to a proper location
+# EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
+# python -m smtpd -n -c DebuggingServer localhost:1025

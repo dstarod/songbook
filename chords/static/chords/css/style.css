@@ -3,7 +3,7 @@ body{
     padding-bottom: 20px;
 }
 .song_body, #id_body{
-    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+    font-family: 'PT Mono', monospace;
 }
 
 /* A4 (210/297) Aspect ratio: 1.4142857142857144 */
@@ -35,4 +35,5 @@ body{
 
 .chord{
     color: red;
+    font-weight: bold;
 }
