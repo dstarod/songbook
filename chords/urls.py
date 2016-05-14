@@ -16,6 +16,7 @@ urlpatterns = [
     url(r'^song/delete/(?P<pk>[0-9]+)/$', login_required(views.SongDelete.as_view()), name='song_delete'),
 
     url(r'^song/copy/(?P<pk>[0-9]+)/$', login_required(views.copy_song), name='song_copy'),
+    url(r'^song/list/(?P<user_id>[0-9]+)/$', login_required(views.SongsListUser.as_view()), name='song_list_user'),
 
     url(r'^tag/(?P<pk>[0-9]+)/$', login_required(views.TagDetail.as_view()), name='tag'),
     url(r'^tag/list/$', login_required(views.TagList.as_view()), name='tag_list'),

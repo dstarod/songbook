@@ -1,5 +1,5 @@
 from django import forms
-from .models import Song, Tag, SongProfile, Playlist
+from .models import Song, Tag, SongProfile, Playlist, Profile
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -18,6 +18,12 @@ class SongProfileModelForm(forms.ModelForm):
             'translator': forms.TextInput(attrs={'class': 'form-control'}),
             'year': forms.TextInput(attrs={'class': 'form-control'}),
         }
+
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['public']
 
 
 class SongModelForm(forms.ModelForm):
@@ -46,3 +52,4 @@ class SongModelForm(forms.ModelForm):
     def clean_body(self):
         # Exclude song body from total cleaning
         return str(self.data.get('body'))
+
