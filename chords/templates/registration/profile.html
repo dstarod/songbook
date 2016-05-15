@@ -30,20 +30,6 @@
                         </div>
                     </div>
                 </form>
-
-                <h4>{% trans 'Settings' %}</h4>
-
-                <form action="" method="post">
-                    {% csrf_token %}
-
-                    {% load bootstrap %}
-                    {{ form|bootstrap }}
-                    <span class="help-block">{% trans 'Public profile means other users can see your song list, sets and tags.' %}</span>
-                    <div class="form-group text-center">
-                        <br>
-                        <input type="submit" class="btn btn-success" value="{% trans 'Submit' %}">
-                    </div>
-                </form>
             </div>
         </div>
     </div>

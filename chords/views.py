@@ -5,7 +5,7 @@ from django.contrib.auth import logout
 from django.views import generic
 from django.core.urlresolvers import reverse_lazy
 from .models import Song, Tag, SongProfile, Playlist, Profile
-from .forms import LoginForm, SongModelForm, SongProfileModelForm, ProfileForm
+from .forms import LoginForm, SongModelForm, SongProfileModelForm
 from django.db.models import Q
 
 
@@ -69,7 +69,7 @@ class SongsListPublic(generic.ListView):
 
     def get_queryset(self):
         # Only users songs or public
-        return Song.objects.filter(Q(public=True) & Q(approved=True)).order_by('?')[0:5]
+        return Song.objects.filter(Q(public=True) & Q(approved=True)).order_by('?')[0:10]
 
 
 class SongDetail(generic.DetailView):
@@ -77,7 +77,9 @@ class SongDetail(generic.DetailView):
 
     def get_queryset(self):
         # Only users songs or public
-        return Song.objects.filter(Q(user_id=self.request.user.id) | Q(public=True))
+        return Song.objects.filter(
+            Q(user_id=self.request.user.id) | Q(public=True)
+        )
 
 
 class SongProfileCreate(generic.CreateView):
@@ -194,46 +196,39 @@ class TagEdit(generic.UpdateView):
 
 
 def profile(request):
-
-    prof = Profile.objects.filter(user=request.user).get_or_create(defaults={'public': False})[0]
-    form = ProfileForm(instance=prof)
-
-    if request.method == 'POST':
-        form = ProfileForm(request.POST, instance=prof)
-        if form.is_valid():
-            form.save()
+    # prof = Profile.objects.filter(user=request.user).get_or_create(defaults={'public': False})[0]
+    # form = ProfileForm(instance=prof)
+    #
+    # if request.method == 'POST':
+    #     form = ProfileForm(request.POST, instance=prof)
+    #     if form.is_valid():
+    #         form.save()
 
     return render(
         request, template_name='registration/profile.html',
-        context={'form': form}
+        context={}
     )
 
 
 def copy_song(request, pk):
+
+    # Create song copy
     song = Song.objects.get(pk=pk)
     song.id = None
     song.user = request.user
     song.public = False
     song.approved = False
     song.save()
-    return redirect(reverse_lazy('songs:song_list'))
 
+    # Copy song profile
+    song_profile = SongProfile.objects.filter(song_id__exact=pk)
+    if song_profile:
+        song_profile = song_profile[0]
+        song_profile.id = None
+        song_profile.song_id = song.id
+        song_profile.save()
+        song.profile = song_profile
+        song.save()
 
-class SongsListUser(generic.ListView):
-    context_object_name = 'songs'
-    template_name = 'chords/song_list.html'
-    paginate_by = 16
-
-    def __init__(self, **kwargs):
-        super(SongsListUser, self).__init__(**kwargs)
-        self.user_id = 0
-
-    def dispatch(self, request, *args, **kwargs):
-        self.user_id = kwargs.get('user_id', 0)
-        return super(SongsListUser, self).dispatch(request, *args, **kwargs)
-
-    def get_queryset(self):
-        # Only users songs or public
-        return Song.objects.filter(
-            Q(public=True) & Q(user__profile__public=True) & Q(user_id__exact=self.user_id)
-        )
+    # Go to song details
+    return redirect(reverse_lazy('songs:song', kwargs={'pk': song.id}))

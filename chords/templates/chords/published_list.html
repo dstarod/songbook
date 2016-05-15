@@ -2,16 +2,14 @@
 {% load i18n %}
 
 {% block content %}
-    <h2 class="text-center">{% trans 'Published song list' %}</h2>
+    <h2 class="text-center">{% trans 'Random selected songs' %}</h2>
 
-    <div class="row">
-        <div class="list-group col-md-offset-2 col-md-8">
-            {% for song in songs %}
-                <a class="list-group-item" href="{% url 'songs:song' pk=song.id %}">
-                    {{ song.title }}
-                </a>
-            {% endfor %}
-        </div>
+    <div class="list-group col-md-offset-2 col-md-8">
+        {% for song in songs %}
+            <a class="list-group-item" href="{% url 'songs:song' pk=song.id %}">
+                {{ song.title }}
+            </a>
+        {% endfor %}
     </div>
 
 {% endblock %}

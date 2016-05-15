@@ -79,7 +79,7 @@ class Profile(models.Model):
     user = models.OneToOneField(AUTH_USER_MODEL, related_name='profile')
     # image = ResizedImageField(upload_to='avatars')
     # pagesize = models.SmallIntegerField(null=False, blank=False, default=10, verbose_name=_('Page size'))
-    public = models.BooleanField(default=False, null=False, verbose_name=_('Public'))
+    # public = models.BooleanField(default=False, null=False, verbose_name=_('Public'))
 
     def __str__(self):
         return self.user.username
