@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-15 22:25+0300\n"
-"PO-Revision-Date: 2016-05-15 22:26+0300\n"
+"POT-Creation-Date: 2016-05-15 22:45+0300\n"
+"PO-Revision-Date: 2016-05-15 22:49+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -144,7 +144,19 @@ msgstr "Подтвердить"
 msgid "Create new one"
 msgstr "Добавить"
 
-#: chords/templates/chords/published_list.html:5
+#: chords/templates/chords/published_list.html:7
+msgid "Make your own songbook with tags and thematic sets."
+msgstr "Песенник с метками и тематическими списками."
+
+#: chords/templates/chords/published_list.html:10
+msgid "Songs, marked as \"Public\" available by direct link."
+msgstr "Песни, помеченные как \"Открытые\" доступны по прямой ссылке."
+
+#: chords/templates/chords/published_list.html:12
+msgid "Songs, approved by administrator available by search."
+msgstr "Песни, одобренные администрацией, доступны для поиска."
+
+#: chords/templates/chords/published_list.html:17
 msgid "Random selected songs"
 msgstr "Произвольно выбранные композиции"
 
