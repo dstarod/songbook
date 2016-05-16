@@ -232,3 +232,10 @@ def copy_song(request, pk):
 
     # Go to song details
     return redirect(reverse_lazy('songs:song', kwargs={'pk': song.id}))
+
+
+def contacts(request):
+    return render(
+        request, template_name='chords/contacts.html',
+        context={}
+    )

@@ -4,7 +4,7 @@ from . import views
 
 urlpatterns = [
     url(r'^accounts/profile/$', views.profile),
-
+    url(r'^contacts/$', views.contacts, name='contacts'),
     url(r'^$', views.SongsListPublic.as_view(), name='index'),
 
     url(r'^song/(?P<pk>[0-9]+)/$', views.SongDetail.as_view(), name='song'),

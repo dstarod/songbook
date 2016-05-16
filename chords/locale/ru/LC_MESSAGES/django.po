@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-15 22:45+0300\n"
-"PO-Revision-Date: 2016-05-15 22:49+0300\n"
+"POT-Creation-Date: 2016-05-16 10:49+0300\n"
+"PO-Revision-Date: 2016-05-16 10:50+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -91,17 +91,25 @@ msgstr "Опубликовано"
 msgid "Songs"
 msgstr "Песни"
 
-#: chords/templates/chords/base.html:43
+#: chords/templates/chords/base.html:39
+msgid "Contacts"
+msgstr "Контакты"
+
+#: chords/templates/chords/base.html:44
 msgid "Logout"
 msgstr "Выход"
 
-#: chords/templates/chords/base.html:45
+#: chords/templates/chords/base.html:46
 msgid "Login"
 msgstr "Войти"
 
-#: chords/templates/chords/base.html:46
+#: chords/templates/chords/base.html:47
 msgid "Register"
 msgstr "Регистрация"
+
+#: chords/templates/chords/contacts.html:8
+msgid "Contact me"
+msgstr "Свяжитесь со мной"
 
 #: chords/templates/chords/playlist_delete.html:8
 msgid "Delete set"
@@ -145,20 +153,20 @@ msgid "Create new one"
 msgstr "Добавить"
 
 #: chords/templates/chords/published_list.html:7
-msgid "Make your own songbook with tags and thematic sets."
-msgstr "Песенник с метками и тематическими списками."
+msgid "Songbook with tags and thematic sets"
+msgstr "Песенник с метками и тематическими списками"
 
-#: chords/templates/chords/published_list.html:10
+#: chords/templates/chords/published_list.html:11
 msgid "Songs, marked as \"Public\" available by direct link."
 msgstr "Песни, помеченные как \"Открытые\" доступны по прямой ссылке."
 
-#: chords/templates/chords/published_list.html:12
+#: chords/templates/chords/published_list.html:14
 msgid "Songs, approved by administrator available by search."
 msgstr "Песни, одобренные администрацией, доступны для поиска."
 
-#: chords/templates/chords/published_list.html:17
+#: chords/templates/chords/published_list.html:19
 msgid "Random selected songs"
-msgstr "Произвольно выбранные композиции"
+msgstr "Несколько случайно выбранных песен"
 
 #: chords/templates/chords/song_delete.html:8
 msgid "Delete song"
@@ -204,7 +212,7 @@ msgstr "Для активации аккаунта посетите ссылку
 
 #: chords/templates/registration/activation_email.txt:5
 msgid "during"
-msgstr "в течении"
+msgstr "в течение"
 
 #: chords/templates/registration/activation_email.txt:5
 msgid "days"
