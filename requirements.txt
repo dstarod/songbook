@@ -5,3 +5,4 @@ Pillow
 django-resized
 django-registration
 django-bootstrap-form
+django-allauth

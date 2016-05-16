@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-16 10:49+0300\n"
-"PO-Revision-Date: 2016-05-16 10:50+0300\n"
+"POT-Creation-Date: 2016-05-16 13:14+0300\n"
+"PO-Revision-Date: 2016-05-16 13:15+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -50,11 +50,11 @@ msgstr "Обновлено"
 msgid "User"
 msgstr "Пользователь"
 
-#: chords/models.py:50 chords/templates/chords/base.html.py:37
+#: chords/models.py:50 chords/templates/chords/base.html.py:36
 msgid "Tags"
 msgstr "Метки"
 
-#: chords/models.py:51 chords/templates/chords/base.html.py:35
+#: chords/models.py:51 chords/templates/chords/base.html.py:34
 #: chords/templates/chords/playlist_list.html:6
 msgid "Sets"
 msgstr "Списки"
@@ -84,30 +84,26 @@ msgid "Year"
 msgstr "Год"
 
 #: chords/templates/chords/base.html:33
-msgid "Published"
-msgstr "Опубликовано"
-
-#: chords/templates/chords/base.html:34
 msgid "Songs"
 msgstr "Песни"
 
-#: chords/templates/chords/base.html:39
+#: chords/templates/chords/base.html:38
 msgid "Contacts"
 msgstr "Контакты"
 
-#: chords/templates/chords/base.html:44
+#: chords/templates/chords/base.html:43
 msgid "Logout"
 msgstr "Выход"
 
-#: chords/templates/chords/base.html:46
+#: chords/templates/chords/base.html:45
 msgid "Login"
 msgstr "Войти"
 
-#: chords/templates/chords/base.html:47
+#: chords/templates/chords/base.html:46
 msgid "Register"
 msgstr "Регистрация"
 
-#: chords/templates/chords/contacts.html:8
+#: chords/templates/chords/contacts.html:7
 msgid "Contact me"
 msgstr "Свяжитесь со мной"
 
@@ -126,29 +122,29 @@ msgstr "Подтвердить"
 msgid "Set"
 msgstr "Список"
 
-#: chords/templates/chords/playlist_detail.html:21
-#: chords/templates/chords/song_detail.html:68
-#: chords/templates/chords/tag_detail.html:17
+#: chords/templates/chords/playlist_detail.html:19
+#: chords/templates/chords/song_detail.html:62
+#: chords/templates/chords/tag_detail.html:15
 msgid "Edit"
 msgstr "Редактировать"
 
-#: chords/templates/chords/playlist_detail.html:22
-#: chords/templates/chords/song_detail.html:74
-#: chords/templates/chords/tag_detail.html:18
+#: chords/templates/chords/playlist_detail.html:20
+#: chords/templates/chords/song_detail.html:68
+#: chords/templates/chords/tag_detail.html:16
 msgid "Delete"
 msgstr "Удалить"
 
-#: chords/templates/chords/playlist_form.html:16
+#: chords/templates/chords/playlist_form.html:15
 #: chords/templates/chords/song_form.html:13
-#: chords/templates/chords/songprofile_form.html:13
-#: chords/templates/chords/tag_form.html:17
+#: chords/templates/chords/songprofile_form.html:12
+#: chords/templates/chords/tag_form.html:16
 #: chords/templates/registration/login.html:16
 msgid "Submit"
 msgstr "Подтвердить"
 
-#: chords/templates/chords/playlist_list.html:20
-#: chords/templates/chords/song_list.html:37
-#: chords/templates/chords/tag_list.html:19
+#: chords/templates/chords/playlist_list.html:18
+#: chords/templates/chords/song_list.html:35
+#: chords/templates/chords/tag_list.html:17
 msgid "Create new one"
 msgstr "Добавить"
 
@@ -157,14 +153,14 @@ msgid "Songbook with tags and thematic sets"
 msgstr "Песенник с метками и тематическими списками"
 
 #: chords/templates/chords/published_list.html:11
-msgid "Songs, marked as \"Public\" available by direct link."
+msgid "Songs, marked as \"Public\" are available by direct link."
 msgstr "Песни, помеченные как \"Открытые\" доступны по прямой ссылке."
 
 #: chords/templates/chords/published_list.html:14
-msgid "Songs, approved by administrator available by search."
+msgid "Songs, approved by administrator are available for searching."
 msgstr "Песни, одобренные администрацией, доступны для поиска."
 
-#: chords/templates/chords/published_list.html:19
+#: chords/templates/chords/published_list.html:17
 msgid "Random selected songs"
 msgstr "Несколько случайно выбранных песен"
 
@@ -172,12 +168,12 @@ msgstr "Несколько случайно выбранных песен"
 msgid "Delete song"
 msgstr "Удалить песню"
 
-#: chords/templates/chords/song_detail.html:70
-#: chords/templates/chords/song_detail.html:72
+#: chords/templates/chords/song_detail.html:64
+#: chords/templates/chords/song_detail.html:66
 msgid "Profile"
 msgstr "Профиль"
 
-#: chords/templates/chords/song_detail.html:80
+#: chords/templates/chords/song_detail.html:74
 msgid "Copy"
 msgstr "Копировать"
 
@@ -237,6 +233,9 @@ msgstr "Сообщение со ссылкой активации успешно
 #: chords/templates/registration/registration_complete.html:6
 msgid "Check out your mailbox"
 msgstr "Проверьте ваш почтовый ящик"
+
+#~ msgid "Published"
+#~ msgstr "Опубликовано"
 
 #~ msgid "Published song list"
 #~ msgstr "Опубликованные песни"
