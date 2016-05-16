@@ -4,21 +4,14 @@
 {% block content %}
     <form action="" method="post" class="form" enctype="multipart/form-data">
         {% csrf_token %}
-        <div class="col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10">
-            <div class="form-group">
-                {% load bootstrap %}
-                {{ form|bootstrap }}
-            </div>
-            <div class="form-group text-center">
-                <input type="submit" value="{% trans 'Submit' %}" class="btn btn-success"/>
-            </div>
+
+        <div class="form-group">
+            {% load bootstrap %}
+            {{ form|bootstrap }}
+        </div>
+        <div class="form-group text-center">
+            <input type="submit" value="{% trans 'Submit' %}" class="btn btn-success"/>
         </div>
 
-{#            {{ form.title.label_tag }}#}
-{#            {{ form.title }}#}
-{#            {{ form.tags }}{{ form.tags.label_tag }}#}
-{#            {{ form.body }}{{ form.body.label_tag }}#}
-{#            {{ form.playlists }}{{ form.playlists.label_tag }}#}
-{#            {{ form.public }}{{ form.public.label_tag }}#}
     </form>
 {% endblock %}

@@ -32,22 +32,16 @@
         <br>
     {% endif %}
 
-    <div class="row">
-        <div class="col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10">
-            {# TODO Open full size #}
-            {% autoescape off %}
-                <p class="song_body song_show"><span>{{ song.body_nbsp|linebreaksbr }}</span></p>
-            {% endautoescape %}
-            {% if song.pdf and song.body != '' %}
-                <a href="{{ song.pdf.url }}" target="_blank" class="label label-info">PDF</a>
-            {% endif %}
-        </div>
+    {% autoescape off %}
+        <p class="song_body song_show"><span>{{ song.body_nbsp|linebreaksbr }}</span></p>
+    {% endautoescape %}
+    {% if song.pdf and song.body != '' %}
+        <a href="{{ song.pdf.url }}" target="_blank" class="label label-info">PDF</a>
+    {% endif %}
 
-        {% if song.pdf and song.body == '' %}
-            <iframe id=pdf_view width="100%" src="{{ song.pdf.url }}" frameborder="0"></iframe>
-        {% endif %}
-
-    </div>
+    {% if song.pdf and song.body == '' %}
+        <iframe id=pdf_view width="100%" src="{{ song.pdf.url }}" frameborder="0"></iframe>
+    {% endif %}
 
     <div class="text-center">
         <br>
@@ -80,7 +74,5 @@
             <a href="{% url 'songs:song_copy' pk=song.id %}" class="btn btn-default">{% trans 'Copy' %}</a>
         </div>
     {% endif %}
-
-
 
 {% endblock %}

@@ -1,7 +1,8 @@
-/* Monospace font for song texts */
 body{
     padding-bottom: 20px;
 }
+
+/* Monospace font for song texts */
 .song_body, #id_body{
     font-family: 'PT Mono', monospace;
 }

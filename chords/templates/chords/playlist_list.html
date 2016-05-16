@@ -5,14 +5,12 @@
 
     <h2 class="text-center">{% trans 'Sets' %}</h2>
 
-    <div class="row">
-        <div class="list-group col-md-offset-2 col-md-8">
-            {% for playlist in playlists %}
-                <a class="list-group-item" href="{% url 'songs:playlist' pk=playlist.id %}">
-                    {{ playlist.title }}<span class="badge">{{ playlist.songs.count }}</span>
-                </a>
-            {% endfor %}
-        </div>
+    <div class="list-group">
+        {% for playlist in playlists %}
+            <a class="list-group-item" href="{% url 'songs:playlist' pk=playlist.id %}">
+                {{ playlist.title }}<span class="badge">{{ playlist.songs.count }}</span>
+            </a>
+        {% endfor %}
     </div>
 
     {% if user.is_authenticated %}
