@@ -30,7 +30,6 @@
 
                 <div class="collapse navbar-collapse" id="navbar_collapse">
                     <ul class="nav navbar-nav">
-                        <li class="{% if request.path == '/' %}active{% endif %}"><a href="{% url 'songs:index' %}">{% trans 'Published' %}</a></li>
                         <li class="{% block songs_nav %}{% endblock %}"><a href="{% url 'songs:song_list' %}">{% trans 'Songs' %}</a></li>
                         <li class="{% block playlist_nav %}{% endblock %}"><a href="{% url 'songs:playlist_list' %}">{% trans 'Sets' %}</a></li>
                         {% if user.is_authenticated %}
