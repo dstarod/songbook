@@ -242,7 +242,7 @@ def contacts(request):
     )
 
 
-def make_pdf(songs):
+def make_pdf(songs, title='songbook'):
     from django.http import HttpResponse
     from reportlab.platypus import SimpleDocTemplate, Paragraph, PageBreakIfNotEmpty
     from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
@@ -250,6 +250,11 @@ def make_pdf(songs):
     from reportlab.pdfbase.ttfonts import TTFont
     from django.conf import settings
     import os
+    import re
+    from transliterate import translit
+
+    title = translit(title, 'ru', reversed=True)
+    title = re.sub(r'\s+', '_', title, 100)
 
     # iPad portrait http: // www.websitedimensions.com /
     page_size = [750, 920]
@@ -257,7 +262,7 @@ def make_pdf(songs):
     page_height = page_size[1] - top_margin - bottom_margin
     page_width = page_size[0] - left_margin - right_margin
     response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'filename="songbook.pdf"'
+    response['Content-Disposition'] = 'filename="{}.pdf"'.format(title)
     # response['Content-Disposition'] = 'attachment; filename="somefilename.pdf"'
     font_path = os.path.join(settings.STATIC_ROOT, 'chords', 'fonts', 'DejaVuSansMono.ttf')
     pdfmetrics.registerFont(TTFont('DejaVuSansMono', font_path))
@@ -303,16 +308,16 @@ def make_pdf(songs):
 @login_required
 def make_pdf_song(request, pk):
     song = get_object_or_404(Song, pk=pk)
-    return make_pdf([song])
+    return make_pdf([song], song.title)
 
 
 @login_required
 def make_pdf_tag(request, pk):
     tag = get_object_or_404(Tag, pk=pk)
-    return make_pdf(tag.songs.all())
+    return make_pdf(tag.songs.all(), tag.title)
 
 
 @login_required
 def make_pdf_set(request, pk):
     playlist = get_object_or_404(Playlist, pk=pk)
-    return make_pdf(playlist.songs.all())
+    return make_pdf(playlist.songs.all(), playlist.title)
