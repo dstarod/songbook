@@ -300,16 +300,19 @@ def make_pdf(songs):
     return response
 
 
+@login_required
 def make_pdf_song(request, pk):
     song = get_object_or_404(Song, pk=pk)
     return make_pdf([song])
 
 
+@login_required
 def make_pdf_tag(request, pk):
     tag = get_object_or_404(Tag, pk=pk)
     return make_pdf(tag.songs.all())
 
 
+@login_required
 def make_pdf_set(request, pk):
     playlist = get_object_or_404(Playlist, pk=pk)
     return make_pdf(playlist.songs.all())
