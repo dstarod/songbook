@@ -2,6 +2,7 @@ from django.conf.urls import url
 from django.contrib.auth.decorators import login_required
 from . import views
 
+
 urlpatterns = [
     url(r'^accounts/profile/$', views.profile),
     url(r'^contacts/$', views.contacts, name='contacts'),
@@ -23,14 +24,13 @@ urlpatterns = [
     url(r'^tag/edit/(?P<pk>[0-9]+)/$', login_required(views.TagEdit.as_view()), name='tag_edit'),
     url(r'^tag/delete/(?P<pk>[0-9]+)/$', login_required(views.TagDelete.as_view()), name='tag_delete'),
 
-    url(r'^set/$', login_required(views.PlaylistList.as_view()), name='playlist_list'),
     url(r'^set/(?P<pk>[0-9]+)/$', views.PlaylistDetails.as_view(), name='playlist'),
+    url(r'^set/list/$', login_required(views.PlaylistList.as_view()), name='playlist_list'),
+    url(r'^set/create/$', login_required(views.PlaylistCreate.as_view()), name='playlist_create'),
     url(r'^set/edit/(?P<pk>[0-9]+)/$', login_required(views.PlaylistEdit.as_view()), name='playlist_edit'),
     url(r'^set/delete/(?P<pk>[0-9]+)/$', login_required(views.PlaylistDelete.as_view()), name='playlist_delete'),
-    url(r'^set/create/$', login_required(views.PlaylistCreate.as_view()), name='playlist_create'),
 
     url(r'^song/pdf/(?P<pk>[0-9]+)/$', views.make_pdf, name='pdf')
 ]
-
 # from django.contrib.auth.decorators import permission_required
 # url(r'^vote/', permission_required('polls.can_vote')(VoteView.as_view())),
