@@ -30,9 +30,9 @@
 
                 <div class="collapse navbar-collapse" id="navbar_collapse">
                     <ul class="nav navbar-nav">
-                        <li class="{% block songs_nav %}{% endblock %}"><a href="{% url 'songs:song_list' %}">{% trans 'Songs' %}</a></li>
-                        <li class="{% block playlist_nav %}{% endblock %}"><a href="{% url 'songs:playlist_list' %}">{% trans 'Sets' %}</a></li>
                         {% if user.is_authenticated %}
+                            <li class="{% block songs_nav %}{% endblock %}"><a href="{% url 'songs:song_list' %}">{% trans 'Songs' %}</a></li>
+                            <li class="{% block playlist_nav %}{% endblock %}"><a href="{% url 'songs:playlist_list' %}">{% trans 'Sets' %}</a></li>
                             <li class="{% block tags_nav %}{% endblock %}"><a href="{% url 'songs:tag_list' %}">{% trans 'Tags' %}</a></li>
                         {% endif %}
                         <li class="{% block contacts_nav %}{% endblock %}"><a href="{% url 'songs:contacts' %}">{% trans 'Contacts' %}</a></li>

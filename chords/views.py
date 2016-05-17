@@ -22,9 +22,9 @@ class PlaylistDetails(generic.DetailView):
     context_object_name = 'playlist'
     model = Playlist
 
-    def get_queryset(self):
+    # def get_queryset(self):
         # Only users songs or public
-        return Playlist.objects.filter(user_id=self.request.user.id)
+        # return Playlist.objects.filter(user_id=self.request.user.id)
 
 
 class PlaylistCreate(generic.CreateView):
@@ -164,9 +164,9 @@ class TagList(generic.ListView):
 class TagDetail(generic.DetailView):
     model = Tag
 
-    def get_queryset(self):
-        # Only users songs or public
-        return Tag.objects.filter(user_id=self.request.user.id)
+    # Only users songs or public
+    # def get_queryset(self):
+    #     return Tag.objects.filter(user_id=self.request.user.id)
 
 
 class TagCreate(generic.CreateView):
