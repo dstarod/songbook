@@ -239,3 +239,57 @@ def contacts(request):
         request, template_name='chords/contacts.html',
         context={}
     )
+
+
+def make_pdf(request, pk):
+    from django.http import HttpResponse
+    from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image
+    from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+    from reportlab.pdfbase import pdfmetrics
+    from reportlab.pdfbase.ttfonts import TTFont
+    from django.conf import settings
+    import os
+
+    song = Song.objects.filter(pk=pk)[0]
+    body, width, height = song.body_pdf()
+    top_margin = bottom_margin = left_margin = right_margin = 50
+    # iPad portrait http: // www.websitedimensions.com /
+    page_size = [750, 920]
+    page_height = page_size[1] - top_margin - bottom_margin
+    page_width = page_size[0] - left_margin - right_margin
+
+    response = HttpResponse(content_type='application/pdf')
+    # response['Content-Disposition'] = 'attachment; filename="somefilename.pdf"'
+
+    doc = SimpleDocTemplate(
+        response, pagesize=page_size,
+        rightMargin=right_margin, leftMargin=left_margin,
+        topMargin=top_margin, bottomMargin=bottom_margin
+    )
+
+    font_path = os.path.join(settings.STATIC_ROOT, 'chords', 'fonts', 'DejaVuSansMono.ttf')
+    pdfmetrics.registerFont(TTFont('DejaVuSansMono', font_path))
+
+    font_size = int(page_height/(height*2))
+
+    document_w = width * font_size
+    while document_w > page_width:
+        font_size -= 1
+        document_w = width * font_size
+
+    font_size *= 1.4
+
+    styles = getSampleStyleSheet()
+    styles.add(ParagraphStyle(
+        name='Chords',
+        fontName='DejaVuSansMono',
+        spaceAfter=font_size,
+        fontSize=font_size
+    ))
+
+    story = []
+    for line in body.splitlines():
+        story.append(Paragraph(line, styles["Chords"]))
+    doc.build(story)
+
+    return response

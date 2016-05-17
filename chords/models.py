@@ -66,6 +66,15 @@ class Song(models.Model):
         body = re.sub(chords_re, r'<span class="chord">\1\2\3\4</span>\5', body)
         return body
 
+    def body_pdf(self):
+        lines = self.body.splitlines()
+        width = max([len(l) for l in lines])
+        height = len(lines)
+        chords_re = re.compile(r'([A-H])(#|##|b|bb)?(m|maj|min|mi|is)?(\d)?(\s|$|/|&)')
+        body = self.body.replace(' ', '&nbsp;')
+        body = re.sub(chords_re, r'<font color="red">\1\2\3\4</font>\5', body)
+        return body, width, height
+
 
 class Tag(models.Model):
     title = models.CharField(max_length=100, verbose_name=_('Title'))

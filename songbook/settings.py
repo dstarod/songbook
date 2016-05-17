@@ -90,6 +90,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'songbook.wsgi.application'
 
+# http://django-allauth.readthedocs.io/en/latest/index.html
 # AUTHENTICATION_BACKENDS = (
     # Needed to login by username in Django admin, regardless of `allauth`
     # 'django.contrib.auth.backends.ModelBackend',
