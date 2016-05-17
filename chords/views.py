@@ -279,7 +279,7 @@ def make_pdf(songs):
             font_size -= 1
             document_w = width * font_size
 
-        font_size *= 1.3
+        font_size *= 1.2
 
         style_name = 'chords_{}'.format(font_size)
         if style_name not in styles:
