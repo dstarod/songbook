@@ -13,7 +13,7 @@
     {% if user.is_authenticated and user.id == tag.user_id %}
     <div class="text-center">
         <div class="btn-group" role="group" aria-label="...">
-            <a href="{% url 'songs:tag_pdf' pk=tag.id %}" class="btn btn-default">{% trans 'PDF' %}</a>
+            <a href="{% url 'songs:tag_pdf' pk=tag.id %}" class="btn btn-default" target="_blank">{% trans 'PDF' %}</a>
             <a href="{% url 'songs:tag_edit' pk=tag.id %}" class="btn btn-default">{% trans 'Edit' %}</a>
             <a href="{% url 'songs:tag_delete' pk=tag.id %}" class="btn btn-default">{% trans 'Delete' %}</a>
         </div>
