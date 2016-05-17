@@ -257,6 +257,7 @@ def make_pdf(songs):
     page_height = page_size[1] - top_margin - bottom_margin
     page_width = page_size[0] - left_margin - right_margin
     response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'filename="songbook.pdf"'
     # response['Content-Disposition'] = 'attachment; filename="somefilename.pdf"'
     font_path = os.path.join(settings.STATIC_ROOT, 'chords', 'fonts', 'DejaVuSansMono.ttf')
     pdfmetrics.registerFont(TTFont('DejaVuSansMono', font_path))
