@@ -59,7 +59,7 @@
         <br>
         <div class="text-center">
             <div class="btn-group" role="group" aria-label="...">
-                <a href="{% url 'songs:pdf' pk=song.id %}" class="btn btn-default" target="_blank">{% trans 'PDF' %}</a>
+                <a href="{% url 'songs:song_pdf' pk=song.id %}" class="btn btn-default" target="_blank">{% trans 'PDF' %}</a>
                 <a href="{% url 'songs:song_edit' pk=song.id %}" class="btn btn-default">{% trans 'Edit' %}</a>
                 {% if song.profile %}
                     <a href="{% url 'songs:song_profile_edit' pk=song.profile.id %}" class="btn btn-default">{% trans 'Profile' %}</a>

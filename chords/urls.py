@@ -30,7 +30,9 @@ urlpatterns = [
     url(r'^set/edit/(?P<pk>[0-9]+)/$', login_required(views.PlaylistEdit.as_view()), name='playlist_edit'),
     url(r'^set/delete/(?P<pk>[0-9]+)/$', login_required(views.PlaylistDelete.as_view()), name='playlist_delete'),
 
-    url(r'^song/pdf/(?P<pk>[0-9]+)/$', views.make_pdf, name='pdf')
+    url(r'^song/(?P<pk>[0-9]+)/pdf/$', views.make_pdf_song, name='song_pdf'),
+    url(r'^tag/(?P<pk>[0-9]+)/pdf/$', views.make_pdf_tag, name='tag_pdf'),
+    url(r'^set/(?P<pk>[0-9]+)/pdf/$', views.make_pdf_set, name='set_pdf')
 ]
 # from django.contrib.auth.decorators import permission_required
 # url(r'^vote/', permission_required('polls.can_vote')(VoteView.as_view())),

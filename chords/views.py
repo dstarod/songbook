@@ -7,6 +7,7 @@ from django.core.urlresolvers import reverse_lazy
 from .models import Song, Tag, SongProfile, Playlist, Profile
 from .forms import LoginForm, SongModelForm, SongProfileModelForm
 from django.db.models import Q
+from django.shortcuts import get_object_or_404
 
 
 class PlaylistList(generic.ListView):
@@ -241,25 +242,26 @@ def contacts(request):
     )
 
 
-def make_pdf(request, pk):
+def make_pdf(songs):
     from django.http import HttpResponse
-    from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image
+    from reportlab.platypus import SimpleDocTemplate, Paragraph, PageBreakIfNotEmpty
     from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
     from reportlab.pdfbase import pdfmetrics
     from reportlab.pdfbase.ttfonts import TTFont
     from django.conf import settings
     import os
 
-    song = Song.objects.filter(pk=pk)[0]
-    body, width, height = song.body_pdf()
-    top_margin = bottom_margin = left_margin = right_margin = 50
     # iPad portrait http: // www.websitedimensions.com /
     page_size = [750, 920]
+    top_margin = bottom_margin = left_margin = right_margin = 50
     page_height = page_size[1] - top_margin - bottom_margin
     page_width = page_size[0] - left_margin - right_margin
-
     response = HttpResponse(content_type='application/pdf')
     # response['Content-Disposition'] = 'attachment; filename="somefilename.pdf"'
+    font_path = os.path.join(settings.STATIC_ROOT, 'chords', 'fonts', 'DejaVuSansMono.ttf')
+    pdfmetrics.registerFont(TTFont('DejaVuSansMono', font_path))
+    styles = getSampleStyleSheet()
+    story = []
 
     doc = SimpleDocTemplate(
         response, pagesize=page_size,
@@ -267,29 +269,46 @@ def make_pdf(request, pk):
         topMargin=top_margin, bottomMargin=bottom_margin
     )
 
-    font_path = os.path.join(settings.STATIC_ROOT, 'chords', 'fonts', 'DejaVuSansMono.ttf')
-    pdfmetrics.registerFont(TTFont('DejaVuSansMono', font_path))
+    for song in songs:
+        body, width, height = song.body_pdf()
 
-    font_size = int(page_height/(height*2))
+        font_size = int(page_height/(height*2))
 
-    document_w = width * font_size
-    while document_w > page_width:
-        font_size -= 1
         document_w = width * font_size
+        while document_w > page_width:
+            font_size -= 1
+            document_w = width * font_size
 
-    font_size *= 1.4
+        font_size *= 1.4
 
-    styles = getSampleStyleSheet()
-    styles.add(ParagraphStyle(
-        name='Chords',
-        fontName='DejaVuSansMono',
-        spaceAfter=font_size,
-        fontSize=font_size
-    ))
+        style_name = 'chords_{}'.format(font_size)
+        if style_name not in styles:
+            styles.add(ParagraphStyle(
+                name=style_name,
+                fontName='DejaVuSansMono',
+                spaceAfter=font_size,
+                fontSize=font_size
+            ))
 
-    story = []
-    for line in body.splitlines():
-        story.append(Paragraph(line, styles["Chords"]))
+        for line in body.splitlines():
+            story.append(Paragraph(line, styles[style_name]))
+        story.append(PageBreakIfNotEmpty())
+
     doc.build(story)
 
     return response
+
+
+def make_pdf_song(request, pk):
+    song = get_object_or_404(Song, pk=pk)
+    return make_pdf([song])
+
+
+def make_pdf_tag(request, pk):
+    tag = get_object_or_404(Tag, pk=pk)
+    return make_pdf(tag.songs.all())
+
+
+def make_pdf_set(request, pk):
+    playlist = get_object_or_404(Playlist, pk=pk)
+    return make_pdf(playlist.songs.all())
