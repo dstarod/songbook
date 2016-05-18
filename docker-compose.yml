@@ -12,6 +12,7 @@ postgres:
     net: host
     volumes:
         - ./pgdata:/pgdata
+        - ./pgdump:/pgdump
     environment:
         - PGDATA=/pgdata
         - POSTGRES_DB=songbook
