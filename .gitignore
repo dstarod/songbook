@@ -6,3 +6,4 @@ private.py
 /media
 /common/logs/*.log
 /static
+fabfile.py

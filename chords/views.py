@@ -133,6 +133,9 @@ class SongCreate(generic.CreateView):
     form_class = SongModelForm
     success_url = reverse_lazy('songs:song_list')
 
+    def get_success_url(self):
+        return reverse_lazy('songs:song', args=(self.object.id,))
+
     def get_initial(self, *args, **kwargs):
         # Get only user tags
         super(SongCreate, self).get_initial()
