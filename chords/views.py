@@ -288,8 +288,6 @@ def make_pdf(songs, title='songbook'):
             font_size -= 1
             document_w = width * font_size
 
-        font_size *= 1.1
-
         style_name = 'chords_{}'.format(font_size)
         if style_name not in styles:
             styles.add(ParagraphStyle(
