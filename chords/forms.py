@@ -4,8 +4,13 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class LoginForm(forms.Form):
-    username = forms.CharField(label='Username', max_length=100, required=False)
-    password = forms.CharField(label='Password', max_length=100, widget=forms.PasswordInput, required=False)
+    username = forms.CharField(
+        label='Username', max_length=100, required=False
+    )
+    password = forms.CharField(
+        label='Password', max_length=100, widget=forms.PasswordInput,
+        required=False
+    )
 
 
 class SongProfileModelForm(forms.ModelForm):

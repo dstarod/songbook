@@ -42,17 +42,28 @@ def user_directory_path(instance, filename):
 
 
 class Song(models.Model):
-    title = models.CharField(null=False, max_length=100, verbose_name=_('Title'))
-    body = models.TextField(null=False, blank=True, default='', verbose_name=_('Content'))
-    created_at = models.DateTimeField(auto_now_add=True, editable=False, verbose_name=_('Created at'))
-    updated_at = models.DateTimeField(auto_now=True, editable=False, verbose_name=_('Updated at'))
-    user = models.ForeignKey(AUTH_USER_MODEL, editable=False, related_name='songs', verbose_name=_('User'))
-    tags = models.ManyToManyField('Tag', blank=True, related_name="songs", verbose_name=_('Tags'))
-    sets = models.ManyToManyField('Playlist', related_name='songs', blank=True, verbose_name=_('Sets'))
-    public = models.BooleanField(default=False, null=False, verbose_name=_('Public'))
-    approved = models.BooleanField(default=False, null=False, verbose_name=_('Approved'))
-
-    pdf = models.FileField(upload_to=user_directory_path, verbose_name='PDF', validators=[validate_pdf], null=True, blank=True)
+    title = models.CharField(
+        null=False, max_length=100, verbose_name=_('Title'))
+    body = models.TextField(
+        null=False, blank=True, default='', verbose_name=_('Content'))
+    created_at = models.DateTimeField(
+        auto_now_add=True, editable=False, verbose_name=_('Created at'))
+    updated_at = models.DateTimeField(
+        auto_now=True, editable=False, verbose_name=_('Updated at'))
+    user = models.ForeignKey(
+        AUTH_USER_MODEL, editable=False, related_name='songs',
+        verbose_name=_('User'))
+    tags = models.ManyToManyField(
+        'Tag', blank=True, related_name="songs", verbose_name=_('Tags'))
+    sets = models.ManyToManyField(
+        'Playlist', related_name='songs', blank=True, verbose_name=_('Sets'))
+    public = models.BooleanField(
+        default=False, null=False, verbose_name=_('Public'))
+    approved = models.BooleanField(
+        default=False, null=False, verbose_name=_('Approved'))
+    pdf = models.FileField(
+        upload_to=user_directory_path, verbose_name='PDF',
+        validators=[validate_pdf], null=True, blank=True)
 
     class Meta:
         ordering = ['title']
@@ -87,27 +98,37 @@ class Tag(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(AUTH_USER_MODEL, related_name='profile')
     # image = ResizedImageField(upload_to='avatars')
-    # pagesize = models.SmallIntegerField(null=False, blank=False, default=10, verbose_name=_('Page size'))
-    # public = models.BooleanField(default=False, null=False, verbose_name=_('Public'))
+    # pagesize = models.SmallIntegerField(
+    # null=False, blank=False, default=10, verbose_name=_('Page size'))
+    # public = models.BooleanField(
+    # default=False, null=False, verbose_name=_('Public'))
 
     def __str__(self):
         return self.user.username
 
 
 class Playlist(models.Model):
-    title = models.CharField(max_length=256, null=False, blank=False, verbose_name=_('Title'))
-    user = models.ForeignKey(AUTH_USER_MODEL, related_name='sets')
+    title = models.CharField(
+        max_length=256, null=False, blank=False, verbose_name=_('Title'))
+    user = models.ForeignKey(
+        AUTH_USER_MODEL, related_name='sets')
 
     def __str__(self):
         return self.title
 
 
 class SongProfile(models.Model):
-    song = models.OneToOneField(Song, related_name='profile')
-    author = models.CharField(max_length=256, null=False, verbose_name=_('Author'))
-    composer = models.CharField(max_length=256, null=False, verbose_name=_('Composer'))
-    translator = models.CharField(max_length=256, blank=True, null=True, verbose_name=_('Translator'))
-    year = models.PositiveSmallIntegerField(validators=[validate_year], blank=True, null=True, verbose_name=_('Year'))
+    song = models.OneToOneField(
+        Song, related_name='profile')
+    author = models.CharField(
+        max_length=256, null=False, verbose_name=_('Author'))
+    composer = models.CharField(
+        max_length=256, null=False, verbose_name=_('Composer'))
+    translator = models.CharField(
+        max_length=256, blank=True, null=True, verbose_name=_('Translator'))
+    year = models.PositiveSmallIntegerField(
+        validators=[validate_year], blank=True, null=True,
+        verbose_name=_('Year'))
 
     def __str__(self):
         return self.author

@@ -70,7 +70,9 @@ class SongsListPublic(generic.ListView):
 
     def get_queryset(self):
         # Only users songs or public
-        return Song.objects.filter(Q(public=True) & Q(approved=True)).order_by('?')[0:10]
+        return Song.objects.filter(
+            Q(public=True) & Q(approved=True)
+        ).order_by('?')[0:10]
 
 
 class SongDetail(generic.DetailView):
