@@ -5,7 +5,7 @@ from django.contrib.auth import logout
 from django.views import generic
 from django.core.urlresolvers import reverse_lazy
 from .models import Song, Tag, SongProfile, Playlist, Profile
-from .forms import LoginForm, SongModelForm, SongProfileModelForm
+from .forms import LoginForm, SongModelForm, SongProfileModelForm, SongSearchForm
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
 
@@ -53,15 +53,38 @@ class PlaylistDelete(generic.DeleteView):
         return Playlist.objects.filter(user_id=self.request.user.id)
 
 
-class SongsList(generic.ListView):
+class SongsSearch(generic.edit.FormView):
+    context_object_name = 'songs'
+    template_name = 'chords/song_list.html'
+    form_class = SongSearchForm
+    success_url = reverse_lazy('songs:song_list')
+
+    def get_queryset(self, *args, **kwargs):
+        return Song.objects.filter(user_id=self.request.user.id)
+
+
+class SongsList(generic.edit.FormMixin, generic.ListView):
     context_object_name = 'songs'
     # https://docs.djangoproject.com/en/1.9/topics/pagination/
     paginate_by = 15
+    form_class = SongSearchForm
 
     def get_queryset(self):
         # Only users songs or public
-        # return Song.objects.filter(Q(user_id=self.request.user.id) | Q(public=True))
-        return Song.objects.filter(user_id=self.request.user.id)
+        # Q(user_id=self.request.user.id) | Q(public=True)
+        query = Song.objects.filter(user_id=self.request.user.id)
+
+        # Check search form
+        form = self.get_form_kwargs()
+        if 'data' in form and 'title' in form['data']:
+            query = query.filter(title__icontains=form['data']['title'])
+
+        return query
+
+    def post(self, *args, **kwargs):
+        # Switch pagination off
+        self.paginate_by = None
+        return self.get(*args, **kwargs)
 
 
 class SongsListPublic(generic.ListView):

@@ -4,6 +4,19 @@
 {% block content %}
     <h2 class="text-center">{% trans 'Song list' %}</h2>
 
+    <form method="post" action="{% url 'songs:song_list' %}" class="form row">
+        <div class="col-xs-12">
+            {% csrf_token %}
+            {% load bootstrap %}
+            {{ form|bootstrap }}
+            <div class="form-group hidden-lg hidden-md hidden-sm">
+                <input type="submit" class="btn btn-success col-xs-12" value="{% trans "Search" %}">
+            </div>
+        </div>
+    </form>
+
+    <br>
+
     <div class="list-group">
         {% for song in songs %}
             <a class='list-group-item' href="{% url 'songs:song' pk=song.id %}">{{ song }}</a>

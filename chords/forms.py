@@ -52,3 +52,9 @@ class SongModelForm(forms.ModelForm):
         # Exclude song body from total cleaning
         return str(self.data.get('body'))
 
+
+class SongSearchForm(forms.Form):
+    title = forms.CharField(
+        widget=forms.TextInput(attrs={'placeholder': _('Search')}),
+        label='', required=False
+    )
