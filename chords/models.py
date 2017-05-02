@@ -71,19 +71,36 @@ class Song(models.Model):
     def __str__(self):
         return self.title
 
+    def re_sub(self, pattern, replacement, string):
+        def _r(m):
+            class _m():
+                def __init__(self, m):
+                    self.m=m
+                    self.string=m.string
+                def group(self, n):
+                    return m.group(n) or ""
+            return re._expand(pattern, _m(m), replacement)
+        return re.sub(pattern, _r, string)
+
     def body_nbsp(self):
-        chords_re = re.compile(r'([A-H])(#|##|b|bb)?(m|maj|min|mi|is)?(\d)?(\s|$|/|&)')
+        chords_re = re.compile(
+            r'([A-H])(#|##|b|bb|sus)?(m|maj|min|mi|is)?(\d)?(\s|$|/|&)')
         body = self.body.replace(' ', '&nbsp;')
-        body = re.sub(chords_re, r'<span class="chord">\1\2\3\4</span>\5', body)
+        body = self.re_sub(
+            chords_re, r'<span class="chord">\1\2\3\4</span>\5', body
+        )
         return body
 
     def body_pdf(self):
         lines = self.body.splitlines()
         width = max([len(l) for l in lines])
         height = len(lines)
-        chords_re = re.compile(r'([A-H])(#|##|b|bb)?(m|maj|min|mi|is)?(\d)?(\s|$|/|&)')
+        chords_re = re.compile(
+            r'([A-H])(#|##|b|bb)?(m|maj|min|mi|is)?(\d)?(\s|$|/|&)')
         body = self.body.replace(' ', '&nbsp;')
-        body = re.sub(chords_re, r'<font color="red">\1\2\3\4</font>\5', body)
+        body = self.re_sub(
+            chords_re, r'<font color="red">\1\2\3\4</font>\5', body
+        )
         return body, width, height
 
 
