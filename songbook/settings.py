@@ -11,9 +11,11 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
-from .private import DEBUG
-from .private import SECRET_KEY, REGISTRATION_SALT, DEFAULT_FROM_EMAIL
-from .private import EMAIL_HOST, EMAIL_PORT, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD
+from .private import (
+    DEBUG, SECRET_KEY, REGISTRATION_SALT, DEFAULT_FROM_EMAIL,
+    EMAIL_HOST, EMAIL_PORT, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD,
+    HOST_ADDRESS
+)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -26,7 +28,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'songlist.ru']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', HOST_ADDRESS]
 
 # Application definition
 
