@@ -1,0 +1,48 @@
+upstream test_server {
+    server unix:/tmp/songlist.sock fail_timeout=10s;
+}
+
+server {
+    listen   80;
+    server_name localhost;
+
+    client_max_body_size 4G;
+
+    access_log /var/log/songlist-access.log;
+    error_log /var/log/songlist-error.log warn;
+
+    location /static {
+        autoindex off;
+        alias /home/dstarod/songbook/static/;
+    }
+
+    location /media {
+        autoindex off;
+        alias /home/dstarod/songbook/media/;
+    }
+
+    location / {
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $http_host;
+        proxy_redirect off;
+
+        if (!-f $request_filename) {
+            proxy_pass http://test_server;
+            break;
+        }
+    }
+
+    #For favicon
+    location  /favicon.ico {
+        alias /home/dstarod/songbook/static/img/favicon.ico;
+    }
+    #For robots.txt
+    location  /robots.txt {
+        alias /home/dstarod/songbook/static/robots.txt ;
+    }
+    # Error pages
+    error_page 500 502 503 504 /500.html;
+    location = /500.html {
+        root /home/dstarod/songbook/static/;
+    }
+}
